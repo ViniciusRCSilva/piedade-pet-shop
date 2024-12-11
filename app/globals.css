@@ -2,20 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: transparent;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    /* Cores personalizadas do Piedade Pet Shop */
+    --primary: 340 96% 72%;
+    /* Cor principal (rosa vibrante) - #FF6584 */
+    --primary-foreground: 355.7 100% 97.3%;
+    /* Ajuste para contraste de foreground */
+
+    --secondary: 32 100% 71%;
+    /* Laranja suave - #FFAA63 */
+    --secondary-foreground: 240 5.9% 10%;
+
+    --green: 100 58% 69%;
+    /* Verde limão - #91DE65 */
+    --green-foreground: 355.7 100% 97.3%;
+
+    --purple: 255 60% 74%;
+    /* Roxo claro - #A08CFF */
+    --purple-foreground: 240 5.9% 10%;
+
+    --cyan: 174 66% 72%;
+    /* Ciano claro - #72E2D6 */
+    --cyan-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0 100%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: var(--primary);
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+
+  body {
+    @apply h-full bg-background text-foreground;
+  }
 }
