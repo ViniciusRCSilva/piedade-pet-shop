@@ -32,12 +32,6 @@ const AboutUsSection = () => {
                     description="Além de muitas comidinhas e remédios para felinos, o Piedade PetShop oferece diversos outros produtos para gatos! Entre eles, há opções de areias e caixinhas higiênicas, que proporcionam mais conforto para o animal fazer as necessidades básicas. 
                     Você também pode deixar o dia a dia dos gatinhos mais feliz com brinquedos e outros acessórios, como os arranhadores. Esses itens estimulam a mente dos mascotes, promovendo a qualidade de vida e a longevidade dos pets."
                 />
-                <Content
-                    value="diversity"
-                    title="Diversidade de itens para outros pets"
-                    description="Além de produtos para cachorro e gato, o Piedade PetShop oferece itens para várias outras espécies. Você pode encontrar acessórios de qualidade para peixes, roedores, pássaros e alguns répteis. 
-                    O catálogo do Piedade PetShop tem itens de limpeza, alimentação e farmácia, além de casinhas e gaiolas para oferecer mais conforto aos mascotes. Como cada bichinho demanda um cuidado específico, recomenda-se buscar a orientação de um especialista para encontrar o produto adequado."
-                />
             </Accordion>
         </div>
     );
