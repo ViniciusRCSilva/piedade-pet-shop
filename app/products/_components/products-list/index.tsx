@@ -160,7 +160,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
                 </div>
 
                 {/* Desktop Filters */}
-                <div className="hidden lg:flex lg:flex-col lg:w-[300px] lg:gap-6 lg:sticky lg:top-24">
+                <div className="hidden lg:flex lg:flex-col lg:w-[300px] lg:gap-6 lg:sticky lg:top-48">
                     {/* Reset Filters Button - Desktop */}
                     {hasActiveFilters && (
                         <Button

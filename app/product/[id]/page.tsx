@@ -61,7 +61,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <Cart />
                 </div>
 
-                <div className="flex flex-col px-6 my-10 gap-8 lg:px-20">
+                <div className="flex flex-col sticky top-20 px-6 pt-10 mb-10 gap-8 bg-white lg:px-20 z-10">
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem>

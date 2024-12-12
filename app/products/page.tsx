@@ -38,20 +38,23 @@ const Products = async () => {
                     </div>
                 </section>
 
-                <Breadcrumb className="py-8 px-6 lg:px-20">
-                    <BreadcrumbList>
-                        <BreadcrumbItem>
-                            <BreadcrumbLink href="/">Início</BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator />
-                        <BreadcrumbItem>
-                            <BreadcrumbPage>Produtos</BreadcrumbPage>
-                        </BreadcrumbItem>
-                    </BreadcrumbList>
-                </Breadcrumb>
+                <div className="flex flex-col sticky top-20 px-6 pt-10 mb-10 gap-8 bg-white lg:px-20 z-10">
+                    <Breadcrumb>
+                        <BreadcrumbList>
+                            <BreadcrumbItem>
+                                <BreadcrumbLink href="/">Início</BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator />
+                            <BreadcrumbItem>
+                                <BreadcrumbPage>Produtos</BreadcrumbPage>
+                            </BreadcrumbItem>
+                        </BreadcrumbList>
+                    </Breadcrumb>
 
-                <section className="h-fit flex flex-col items-center px-6 lg:px-20">
-                    <div className="w-full h-[1px] bg-purple mb-10" />
+                    <div className="w-full h-[1px] bg-purple/20" />
+                </div>
+
+                <section className="h-fit flex items-center px-6 mb-10 lg:px-20">
                     <ProductList initialProducts={serializedProducts} />
                 </section>
 
