@@ -89,7 +89,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <div className="w-full h-[1px] bg-purple/20" />
                     <div className="flex flex-col">
                         <h1 className="text-lg text-muted-foreground mb-6">Veja também:</h1>
-                        <Carousel className="w-full px-20">
+                        <Carousel className="w-full lg:px-20">
                             <CarouselContent className="-ml-1 select-none">
                                 {serializedProducts
                                     .filter((p) => p.id !== params.id)
