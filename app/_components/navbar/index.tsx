@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { SignedIn, SignedOut, SignInButton, UserButton, SignOutButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "../ui/sheet";
-import { House, InstagramLogo, Layout, List, Note, SignIn, SignOut, Storefront, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
+import { House, InstagramLogo, Layout, List, Scroll, SignIn, SignOut, Storefront, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 
 const Navbar = async () => {
     const user = await currentUser();
@@ -103,7 +103,7 @@ const Navbar = async () => {
                                         href="/orders"
                                         className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
                                     >
-                                        <Note className="h-4 w-4" />
+                                        <Scroll className="h-4 w-4" />
                                         Meus pedidos
                                     </Link>
                                 )}

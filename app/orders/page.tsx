@@ -3,10 +3,10 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "../_lib/prisma";
 import OrderCard from "./_components/order-card";
-import { ScrollText } from "lucide-react";
 import { ScrollArea } from "../_components/ui/scroll-area";
 import Link from "next/link";
 import { Button } from "../_components/ui/button";
+import { Scroll } from "@phosphor-icons/react/dist/ssr";
 
 const OrdersPage = async () => {
     const user = await currentUser();
@@ -56,7 +56,7 @@ const OrdersPage = async () => {
                     <div className="h-full bg-white p-6">
                         <div className="flex flex-col gap-2 mb-8">
                             <div className="flex items-center gap-3">
-                                <ScrollText size={28} className="text-primary" />
+                                <Scroll size={28} className="text-primary" />
                                 <h1 className="font-bold text-2xl text-muted-foreground">Meus Pedidos</h1>
                             </div>
                             <p className="text-muted-foreground text-sm pl-10">Acompanhe seus pedidos e histórico de compras</p>
@@ -64,8 +64,8 @@ const OrdersPage = async () => {
 
                         {serializedOrders.length === 0 ? (
                             <div className="flex w-full h-[80%] items-center justify-center text-muted-foreground">
-                                <div className="flex flex-col items-center justify-center bg-muted shadow-md p-6 rounded-md">
-                                    <ScrollText size={40} className="mb-4 opacity-50" />
+                                <div className="flex flex-col items-center justify-center border p-6 rounded-md">
+                                    <Scroll size={40} className="mb-4 opacity-50" />
                                     <p className="text-center">Você ainda não fez nenhum pedido.</p>
                                     <Button asChild variant="link" className="text-primary">
                                         <Link href="/products">
