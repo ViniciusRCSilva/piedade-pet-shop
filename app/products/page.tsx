@@ -2,6 +2,15 @@ import Cart from "../_components/cart";
 import { db } from "../_lib/prisma";
 import ProductList from "./_components/products-list";
 
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/app/_components/ui/breadcrumb";
+
 const Products = async () => {
     const products = await db.product.findMany({
         orderBy: {
@@ -29,7 +38,19 @@ const Products = async () => {
                     </div>
                 </section>
 
-                <section className="h-fit flex flex-col items-center py-16 md:py-20 px-6 lg:px-20">
+                <Breadcrumb className="py-8 px-6 lg:px-20">
+                    <BreadcrumbList>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="/">Início</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbPage>Produtos</BreadcrumbPage>
+                        </BreadcrumbItem>
+                    </BreadcrumbList>
+                </Breadcrumb>
+
+                <section className="h-fit flex flex-col items-center px-6 lg:px-20">
                     <div className="w-full h-[1px] bg-purple mb-10" />
                     <ProductList initialProducts={serializedProducts} />
                 </section>
