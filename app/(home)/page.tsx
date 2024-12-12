@@ -3,6 +3,7 @@ import HeroSectionCarousel from "./_components/hero-section";
 import ProductsSection from "./_components/products-section";
 import ContactsSection from "./_components/contacts-section";
 import BrandsSection from "./_components/brands-section";
+import AboutUsSection from "./_components/about-us-section";
 
 const Home = async () => {
   return (
@@ -29,6 +30,15 @@ const Home = async () => {
         {/* Brands Section */}
         <section className="flex h-fit flex-col items-center py-16 md:py-20 px-6 md:px-10">
           <BrandsSection />
+        </section>
+
+        <div className="flex w-full justify-center">
+          <div className="w-[90%] h-[1px] bg-purple" />
+        </div>
+
+        {/* About Us Section */}
+        <section className="flex h-fit w-full items-center justify-center py-16 md:py-20 px-6 md:px-10">
+          <AboutUsSection />
         </section>
 
         {/* Contacts Section */}
