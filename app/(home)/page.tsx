@@ -9,7 +9,7 @@ const Home = async () => {
   return (
     <>
       <main className="pt-[20px] md:pt-[72px]">
-        <div className="fixed bottom-0 right-0 m-5 lg:m-10">
+        <div className="fixed bottom-0 right-0 m-5 lg:m-10 z-10">
           <Cart />
         </div>
 
@@ -24,7 +24,7 @@ const Home = async () => {
         </section>
 
         <div className="flex w-full justify-center">
-          <div className="w-[90%] h-[1px] bg-purple" />
+          <div className="w-[90%] h-[1px] bg-purple/20" />
         </div>
 
         {/* Brands Section */}
@@ -33,7 +33,7 @@ const Home = async () => {
         </section>
 
         <div className="flex w-full justify-center">
-          <div className="w-[90%] h-[1px] bg-purple" />
+          <div className="w-[90%] h-[1px] bg-purple/20" />
         </div>
 
         {/* About Us Section */}
@@ -42,7 +42,7 @@ const Home = async () => {
         </section>
 
         {/* Contacts Section */}
-        <section className="flex h-fit flex-col bg-contacts_section bg-cover bg-no-repeat px-6 md:px-10 py-16 md:py-20 lg:h-[75vh]">
+        <section className="flex h-fit flex-col bg-contacts_section bg-cover bg-no-repeat px-6 md:px-10 py-16 md:py-20">
           <ContactsSection />
         </section>
 

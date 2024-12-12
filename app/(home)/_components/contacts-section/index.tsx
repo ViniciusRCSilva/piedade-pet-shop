@@ -54,21 +54,16 @@ const ContactsSection = () => {
                             </p>
                         </Link>
                     </div>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.286418957261!2d-34.92039292401107!3d-8.173873381928534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7aae1a556e60ec7%3A0x6ef9c00b03a4586e!2sR.%20Rossini%20Roosevelt%E2%80%8B%20de%20Albuquerque%2C%2068%20-%20Piedade%2C%20Jaboat%C3%A3o%20dos%20Guararapes%20-%20PE%2C%2054410-310!5e0!3m2!1spt-BR!2sbr!4v1731469553348!5m2!1spt-BR!2sbr"
-                        width="600"
-                        height="450"
-                        loading="lazy"
-                        className="hidden rounded-lg border-2 border-primary lg:block"
-                    ></iframe>
-
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.286418957261!2d-34.92039292401107!3d-8.173873381928534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7aae1a556e60ec7%3A0x6ef9c00b03a4586e!2sR.%20Rossini%20Roosevelt%E2%80%8B%20de%20Albuquerque%2C%2068%20-%20Piedade%2C%20Jaboat%C3%A3o%20dos%20Guararapes%20-%20PE%2C%2054410-310!5e0!3m2!1spt-BR!2sbr!4v1731469553348!5m2!1spt-BR!2sbr"
-                        width="300"
-                        height="300"
-                        loading="lazy"
-                        className="block rounded-lg border-2 border-primary lg:hidden"
-                    ></iframe>
+                    <div className="w-[300px] sm:w-[400px] lg:w-[600px] h-[300px] lg:h-[400px] relative">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.286418957261!2d-34.92039292401107!3d-8.173873381928534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7aae1a556e60ec7%3A0x6ef9c00b03a4586e!2sR.%20Rossini%20Roosevelt%E2%80%8B%20de%20Albuquerque%2C%2068%20-%20Piedade%2C%20Jaboat%C3%A3o%20dos%20Guararapes%20-%20PE%2C%2054410-310!5e0!3m2!1spt-BR!2sbr!4v1731469553348!5m2!1spt-BR!2sbr"
+                            loading="lazy"
+                            className="absolute inset-0 w-full h-full rounded-lg border-2 border-primary"
+                            style={{ filter: 'contrast(1.2) opacity(0.9)' }}
+                            allowFullScreen
+                            referrerPolicy="no-referrer-when-downgrade"
+                        ></iframe>
+                    </div>
                 </div>
             </div>
         </>
