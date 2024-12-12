@@ -1,14 +1,10 @@
 import Content from "./content";
 import { Accordion } from "@/app/_components/ui/accordion";
-import Image from "next/image";
 
 const AboutUsSection = () => {
     return (
         <div className="w-[80%] flex flex-col items-center lg:items-start">
-            <div className="flex items-center mb-4">
-                <Image src="/logo_draw.png" alt="Piedade PetShop" width={32} height={32} draggable={false} className="mr-2" />
-                <h1 className="text-2xl font-bold text-purple">Piedade PetShop</h1>
-            </div>
+            <h1 className="text-2xl font-bold text-purple mb-4">Piedade PetShop</h1>
             <p className="mb-2 text-muted-foreground text-center text-sm lg:text-base lg:text-left">
                 A relação entre um tutor e um animal de estimação é transformadora, cheia de conexão emocional. Para tornar esse laço ainda mais especial, o Piedade PetShop oferece produtos dos principais fabricantes do mercado.
                 Com toda essa variedade, os tutores podem encontrar o que precisam no dia a dia sem sair de casa. A loja do Piedade PetShop tem várias opções de produtos, todos organizados por categorias!
