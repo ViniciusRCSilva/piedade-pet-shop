@@ -83,8 +83,8 @@ export const updateOrderStatus = async (orderId: string, status: OrderStatus) =>
             },
         });
 
-        revalidatePath("/admin-page");
-        revalidatePath("/orders-page");
+        revalidatePath("/admin");
+        revalidatePath("/orders");
 
         return order;
     } catch (error) {

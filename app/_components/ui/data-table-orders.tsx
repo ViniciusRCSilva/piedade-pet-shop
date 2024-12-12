@@ -25,6 +25,9 @@ import { useState } from "react";
 import { OrderStatus } from "@prisma/client";
 import { formatters } from "@/app/_utils/utils";
 import { Badge } from "./badge";
+import { Button } from "./button";
+import { ArrowsClockwise } from "@phosphor-icons/react/dist/ssr";
+import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -46,6 +49,8 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [statusFilter, setStatusFilter] = useState("ALL");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const table = useReactTable({
     data,
@@ -68,6 +73,14 @@ export function DataTable<TData, TValue>({
     } else {
       table.getColumn("status")?.setFilterValue(value);
     }
+  };
+
+  const handleRefresh = () => {
+    setLoading(true);
+    router.refresh();
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   };
 
   return (
@@ -102,6 +115,13 @@ export function DataTable<TData, TValue>({
             ))}
           </SelectContent>
         </Select>
+        <Button variant="outline" onClick={handleRefresh}>
+          {loading ? (
+            <ArrowsClockwise size={24} className="animate-spin" />
+          ) : (
+            <ArrowsClockwise size={24} />
+          )}
+        </Button>
       </div>
 
       <div className="rounded-md border bg-background">

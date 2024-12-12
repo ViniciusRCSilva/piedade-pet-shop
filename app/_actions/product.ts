@@ -37,7 +37,7 @@ export async function createProduct(params: CreateProductParams) {
             },
         })
 
-        revalidatePath("/admin-page")
+        revalidatePath("/admin")
         return product
     } catch (error) {
         console.error("[PRODUCT_CREATE]", error)
@@ -61,7 +61,7 @@ export async function updateProduct(params: UpdateProductParams) {
             },
         })
 
-        revalidatePath("/admin-page")
+        revalidatePath("/admin")
         return product
     } catch (error) {
         console.error("[PRODUCT_UPDATE]", error)
@@ -77,7 +77,7 @@ export async function deleteProduct(productId: string) {
             }
         })
 
-        revalidatePath("/admin-page")
+        revalidatePath("/admin")
         return { success: true }
     } catch (error) {
         console.error("[PRODUCT_DELETE]", error)
