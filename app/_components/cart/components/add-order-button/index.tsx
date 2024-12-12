@@ -77,11 +77,9 @@ const AddOrderButton = ({ cartItems, cartValue }: AddOrderButtonProps) => {
                 userId: user.id,
                 userName: `${user.firstName || ''} ${user.lastName || ''}`.trim(),
                 userPhone: user.phoneNumbers?.[0]?.phoneNumber || "Não informado",
-                totalAmount: Number(cartValue),
+                totalAmount: cartValue,
                 items: formattedItems
             }
-
-            console.log("Sending order data:", orderData)
 
             // Validate order data
             if (!orderData.userId || !orderData.userName || orderData.items.length === 0) {

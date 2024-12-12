@@ -38,32 +38,22 @@ export const createOrder = async (data: CreateOrderData) => {
             category: item.category
         }))
 
-        console.log("Formatted data:", {
-            userId: data.userId,
-            userName: data.userName,
-            userPhone: data.userPhone,
-            totalAmount,
-            items
-        })
-
         const order = await db.order.create({
             data: {
                 userId: data.userId,
                 userName: data.userName,
                 userPhone: data.userPhone,
-                totalAmount: parseFloat(totalAmount),
+                totalAmount: Number(totalAmount),
                 items: {
                     create: items.map(item => ({
                         productId: item.productId,
-                        quantity: item.quantity,
-                        value: parseFloat(item.value),
+                        quantity: Number(item.quantity),
+                        value: Number(item.value),
                         category: item.category
                     }))
                 }
             }
         })
-
-        console.log("Created order:", order)
         revalidatePath("/orders")
         return order
     } catch (error) {
