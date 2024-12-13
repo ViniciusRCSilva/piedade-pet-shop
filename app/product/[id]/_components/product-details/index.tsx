@@ -166,7 +166,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                                 </Button>
                             ) : (
                                 <SignInButton mode="modal">
-                                    <Button className="flex items-center gap-2">
+                                    <Button className="flex w-full items-center gap-2" variant="outline">
                                         <SignIn className="w-4 h-4" />
                                         Entre para adicionar ao carrinho
                                     </Button>
