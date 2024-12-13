@@ -77,5 +77,5 @@ export const formatters = {
     statusBadgeVariant: (status: OrderStatus) => getStatusBadgeVariant(status),
     filterProductsByCategory: (products: Product[], categories: ProductCategory[]) => filterProductsByCategory(products, categories),
     getAvailableImages: () => AVAILABLE_IMAGES,
-    priceRange: (value: number) => priceRanges.find(range => range.min <= value && range.max >= value)?.label ?? "Todos os preços"
+    priceRange: (value: number) => priceRanges.find(range => range.min <= value && range.max >= value)?.label ?? "Todos os preços",
 }

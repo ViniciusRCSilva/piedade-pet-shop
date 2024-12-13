@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ptBR } from "@clerk/localizations";
 import Navbar from "./_components/navbar";
+import { RequireRegistration } from "./_components/auth/require-registration";
 
 const baloo = Baloo_2({
   subsets: ['latin'],
@@ -27,11 +28,13 @@ export default function RootLayout({
         className={`${baloo.className} antialiased`}
       >
         <ClerkProvider localization={ptBR}>
-          <CartProvider>
-            <Navbar />
-            {children}
-            <Toaster />
-          </CartProvider>
+          <RequireRegistration>
+            <CartProvider>
+              <Navbar />
+              {children}
+              <Toaster />
+            </CartProvider>
+          </RequireRegistration>
         </ClerkProvider>
       </body>
     </html>

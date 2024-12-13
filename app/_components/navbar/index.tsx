@@ -15,7 +15,7 @@ const Navbar = async () => {
             <div className="flex w-full items-center justify-between border-b border-muted bg-white/90 px-6 py-4 backdrop-blur-md">
                 {/* Logo */}
                 <Link className="flex items-center gap-2" href="/">
-                    <Image src="/logo_draw.png" alt="Piedade Pet Shop" width={50} height={50} draggable={false} quality={80} />
+                    <Image src="/logo_draw.svg" alt="Piedade Pet Shop" width={50} height={50} draggable={false} quality={80} />
                     <Image src="/logo_name.png" alt="Piedade Pet Shop" width={100} height={50} className="hidden lg:flex" draggable={false} quality={80} />
                 </Link>
 
@@ -36,7 +36,6 @@ const Navbar = async () => {
                                 <SignedIn>
                                     <div className="flex items-center gap-3">
                                         <UserButton
-                                            afterSignOutUrl="/"
                                             appearance={{
                                                 elements: {
                                                     avatarBox: "h-10 w-10"
@@ -130,7 +129,7 @@ const Navbar = async () => {
                             </div>
 
                             <SignedIn>
-                                <SignOutButton signOutOptions={{ redirectUrl: "/" }}>
+                                <SignOutButton>
                                     <span className="flex items-center gap-3 border-t pt-6 text-muted-foreground transition-colors cursor-pointer hover:text-primary">
                                         <SignOut className="h-4 w-4" />
                                         Sair da conta
