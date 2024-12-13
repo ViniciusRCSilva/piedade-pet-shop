@@ -1,6 +1,7 @@
 "use client";
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/app/_components/ui/carousel";
+import Image from "next/image";
 import React from "react";
 
 const HeroSectionCarouselProducts = () => {
@@ -13,13 +14,29 @@ const HeroSectionCarouselProducts = () => {
         >
             <CarouselContent className="-ml-2 md:-ml-4">
                 <CarouselItem className="pl-2 md:pl-4">
-                    <div className="relative aspect-[4/3] md:aspect-[24/9] w-full overflow-hidden">
-                        <div className="absolute inset-0 bg-products_banner bg-contain lg:bg-cover bg-no-repeat bg-center" />
+                    <div className="relative w-full h-auto flex justify-center items-center">
+                        <Image
+                            src="/products-banner/1.png"
+                            alt="Products Banner"
+                            width={1920}
+                            height={720}
+                            className="w-auto h-auto object-contain"
+                            priority
+                            quality={100}
+                        />
                     </div>
                 </CarouselItem>
                 <CarouselItem className="pl-2 md:pl-4">
-                    <div className="relative aspect-[4/3] md:aspect-[24/9] w-full overflow-hidden">
-                        <div className="absolute inset-0 bg-products_banner2 bg-contain lg:bg-cover bg-no-repeat bg-center" />
+                    <div className="relative w-full h-auto flex justify-center items-center">
+                        <Image
+                            src="/products-banner/2.png"
+                            alt="Products Banner 2"
+                            width={1920}
+                            height={720}
+                            className="w-auto h-auto object-contain"
+                            priority
+                            quality={100}
+                        />
                     </div>
                 </CarouselItem>
             </CarouselContent>

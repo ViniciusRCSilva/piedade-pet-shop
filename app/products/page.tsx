@@ -27,17 +27,17 @@ const Products = async () => {
 
     return (
         <>
-            <main className="pt-[20px] md:pt-[72px]">
+            <main className="pt-[72px]">
                 <div className="fixed bottom-0 right-0 m-5 lg:m-10">
                     <Cart />
                 </div>
 
                 {/* Hero Section */}
-                <section className="w-full">
+                <section className="w-full h-fit">
                     <HeroSectionCarouselProducts />
                 </section>
 
-                <div className="flex flex-col sticky top-20 px-6 pt-10 mb-10 gap-8 bg-white lg:px-20 z-10">
+                <div className="flex flex-col sticky top-20 px-6 pt-10 sm:-mt-16 mb-10 gap-8 bg-white lg:px-20 z-10">
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem>

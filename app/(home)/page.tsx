@@ -8,13 +8,13 @@ import AboutUsSection from "./_components/about-us-section";
 const Home = async () => {
   return (
     <>
-      <main className="pt-[20px] md:pt-[72px]">
+      <main className="pt-[72px]">
         <div className="fixed bottom-0 right-0 m-5 lg:m-10 z-10">
           <Cart />
         </div>
 
         {/* Hero Section */}
-        <section className="w-full">
+        <section className="w-full h-fit">
           <HeroSectionCarousel />
         </section>
 
