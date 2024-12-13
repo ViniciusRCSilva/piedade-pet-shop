@@ -91,7 +91,7 @@ const Navbar = async () => {
                                 </Link>
 
                                 <Link
-                                    href="/products"
+                                    href="/produtos"
                                     className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
                                 >
                                     <Storefront className="h-4 w-4" />
@@ -100,7 +100,7 @@ const Navbar = async () => {
 
                                 {user && (
                                     <Link
-                                        href="/orders"
+                                        href="/pedidos"
                                         className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
                                     >
                                         <Scroll className="h-4 w-4" />

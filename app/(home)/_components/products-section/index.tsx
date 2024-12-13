@@ -40,7 +40,7 @@ const ProductsSection = () => {
             </div>
 
             <Button variant="link" asChild>
-                <Link href="/products" className="flex items-center gap-2 text-xl text-primary">
+                <Link href="/produtos" className="flex items-center gap-2 text-xl text-primary">
                     Ver todos os produtos
                 </Link>
             </Button>

@@ -92,7 +92,7 @@ const OrdersPage = async () => {
                                     <Scroll size={40} className="mb-4 opacity-50" />
                                     <p className="text-center">Você ainda não fez nenhum pedido.</p>
                                     <Button asChild variant="link" className="text-primary">
-                                        <Link href="/products">
+                                        <Link href="/produtos">
                                             <p className="text-center text-sm">Que tal começar a comprar agora?</p>
                                         </Link>
                                     </Button>

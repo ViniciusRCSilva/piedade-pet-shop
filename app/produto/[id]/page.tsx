@@ -69,7 +69,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                             </BreadcrumbItem>
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>
-                                <BreadcrumbLink href="/products">Produtos</BreadcrumbLink>
+                                <BreadcrumbLink href="/produtos">Produtos</BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>

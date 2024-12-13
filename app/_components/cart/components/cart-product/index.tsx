@@ -58,7 +58,7 @@ const CartProduct = ({ id, name, value, quantity, isKgProduct, availableQuantity
                 <div className="flex flex-col">
                     <div>
                         <CardTitle className="text-lg text-muted-foreground">
-                            <Link href={`/product/${id}`} className="hover:underline">
+                            <Link href={`/produto/${id}`} className="hover:underline">
                                 {name}
                             </Link>
                             <span className="ml-2 text-sm font-normal">

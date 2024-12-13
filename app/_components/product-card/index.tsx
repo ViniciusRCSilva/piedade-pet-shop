@@ -92,7 +92,7 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
     return (
         <Card className={`flex flex-col h-full w-full bg-white ${disabled ? "opacity-50" : ""}`}>
             <CardHeader className="flex-grow group">
-                <Link href={`/product/${id}`}>
+                <Link href={`/produto/${id}`}>
                     <div className="flex w-full items-center justify-center mb-2">
                         <div className="flex w-[250px] h-[250px] items-center justify-center rounded-lg border">
                             <Image

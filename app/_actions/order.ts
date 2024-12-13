@@ -54,7 +54,7 @@ export const createOrder = async (data: CreateOrderData) => {
                 }
             }
         })
-        revalidatePath("/orders")
+        revalidatePath("/pedidos")
         return order
     } catch (error) {
         console.error("[ORDER_CREATE]", error)
@@ -74,7 +74,7 @@ export const updateOrderStatus = async (orderId: string, status: OrderStatus) =>
         });
 
         revalidatePath("/admin");
-        revalidatePath("/orders");
+        revalidatePath("/pedidos");
 
         return order;
     } catch (error) {
