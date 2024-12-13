@@ -17,7 +17,8 @@ export default withUt({
 				banner2: "url('../public/banner/2.png')",
 				banner3: "url('../public/banner/3.png')",
 				banner4: "url('../public/banner/4.png')",
-				racao_banner: "url('../public/racao_banner.png')",
+				products_banner: "url('../public/products-banner/1.png')",
+				products_banner2: "url('../public/products-banner/2.png')",
 			},
 			colors: {
 				primary: 'hsl(var(--primary) / <alpha-value>)',

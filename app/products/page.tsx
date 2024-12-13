@@ -1,5 +1,6 @@
 import Cart from "../_components/cart";
 import { db } from "../_lib/prisma";
+import HeroSectionCarouselProducts from "./_components/hero-section";
 import ProductList from "./_components/products-list";
 
 import {
@@ -33,9 +34,7 @@ const Products = async () => {
 
                 {/* Hero Section */}
                 <section className="w-full">
-                    <div className="relative aspect-[4/3] md:aspect-[24/9] w-full overflow-hidden">
-                        <div className="absolute inset-0 bg-racao_banner bg-contain lg:bg-cover bg-no-repeat bg-center" />
-                    </div>
+                    <HeroSectionCarouselProducts />
                 </section>
 
                 <div className="flex flex-col sticky top-20 px-6 pt-10 mb-10 gap-8 bg-white lg:px-20 z-10">
