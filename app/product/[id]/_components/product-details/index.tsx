@@ -165,7 +165,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                                     Adicionar ao carrinho
                                 </Button>
                             ) : (
-                                <SignInButton mode="modal">
+                                <SignInButton signUpFallbackRedirectUrl={"/"} mode="modal">
                                     <Button className="flex w-full items-center gap-2" variant="outline">
                                         <SignIn className="w-4 h-4" />
                                         Entre para adicionar ao carrinho

@@ -57,7 +57,7 @@ const Navbar = async () => {
                                 </SignedIn>
 
                                 <SignedOut>
-                                    <SignInButton mode="modal">
+                                    <SignInButton signUpFallbackRedirectUrl={"/"} mode="modal">
                                         <SheetClose asChild>
                                             <Button className="w-full gap-2">
                                                 <SignIn className="h-4 w-4" />

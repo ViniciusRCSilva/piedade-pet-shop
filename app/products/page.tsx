@@ -28,7 +28,7 @@ const Products = async () => {
     return (
         <>
             <main className="pt-[72px]">
-                <div className="fixed bottom-0 right-0 m-5 lg:m-10">
+                <div className="fixed bottom-0 right-0 m-5 lg:m-10 z-40">
                     <Cart />
                 </div>
 
