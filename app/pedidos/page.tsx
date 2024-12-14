@@ -54,7 +54,7 @@ const OrdersPage = async () => {
     }));
 
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full h-full flex flex-col">
             <div className="fixed bottom-0 right-0 m-5 z-40 lg:m-10">
                 <Cart />
             </div>
@@ -75,7 +75,7 @@ const OrdersPage = async () => {
                 <div className="w-full h-[1px] bg-purple/20" />
             </div>
 
-            <div className="w-full h-full pt-20 px-6 lg:px-20">
+            <div className="w-full h-full pt-20 px-6">
                 <div className="h-fullmx-auto">
                     <div className="h-full p-6">
                         <div className="flex flex-col gap-2 mb-8">
