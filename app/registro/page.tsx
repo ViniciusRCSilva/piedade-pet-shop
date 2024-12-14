@@ -1,6 +1,5 @@
 "use client";
 
-import { Heart } from "@phosphor-icons/react/dist/ssr";
 import { Card, CardContent, CardHeader, CardTitle } from "../_components/ui/card";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form"
@@ -22,7 +21,7 @@ import {
 import { Input } from "../_components/ui/input"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../_components/ui/carousel";
 import Image from "next/image";
-import { Loader2 } from "lucide-react";
+import { HeartIcon, Loader2 } from "lucide-react";
 
 const formSchema = z.object({
     name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres").max(20, "Nome deve ter no máximo 20 caracteres"),
@@ -130,7 +129,7 @@ const Register = () => {
     return (
         <main className="w-full min-h-screen flex flex-col items-center justify-center p-10 text-muted-foreground lg:grid lg:grid-cols-2 gap-8">
             {/* Presentation */}
-            <div className="flex flex-col gap-4 w-full h-full items-center lg:items-start justify-center">
+            <div className="flex flex-col gap-2 w-full h-full items-center justify-center">
                 <Image
                     src="/dog_register.png"
                     alt="Olá!"
@@ -140,25 +139,21 @@ const Register = () => {
                     priority
                     className="-mb-16"
                 />
-                <div className="text-center lg:text-left">
-                    <h1 className="text-4xl font-bold mb-4">Olá, {username}!</h1>
-                    <div className="flex items-center gap-2 justify-center lg:justify-start">
-                        <h3 className="text-xl">Que bom ter você aqui no Piedade PetShop!</h3>
-                        <Heart size={32} className="text-primary" fill="currentColor" />
-                    </div>
+                <h1 className="text-2xl text-center font-bold lg:text-4xl">Olá, {username}!</h1>
+                <div className="flex items-center gap-2 justify-center lg:justify-start">
+                    <h3 className="text-base text-center lg:text-2xl">Que bom ter você aqui no Piedade PetShop!</h3>
+                    <HeartIcon size={24} className="text-primary" fill="currentColor" />
                 </div>
-
-                <div className="text-center lg:text-left">
-                    <p>Preencha todos os campos para criar sua conta e aproveite nossos produtos!</p>
-                </div>
+                <p className="text-center">Preencha todos os campos para criar sua conta e aproveite nossos produtos!</p>
             </div>
 
+            <p className="block md:hidden text-sm text-muted-foreground">*Arraste para o lado para preencher o restante do formulário</p>
             {/* Form */}
             <div className="w-full h-full flex items-center justify-center">
-                <div className="w-full max-w-md">
+                <div className="w-full max-w-md relative">
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                            <Carousel className="w-full">
+                            <Carousel className="w-full relative">
                                 <CarouselContent>
                                     <CarouselItem>
                                         <Card className="w-full">
@@ -312,9 +307,11 @@ const Register = () => {
                                         </Card>
                                     </CarouselItem>
                                 </CarouselContent>
-                                <div className="hidden sm:block">
-                                    <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
-                                    <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
+                                <div className="absolute hidden md:block md:-left-12 top-1/2 -translate-y-1/2">
+                                    <CarouselPrevious className="relative bg-background border-purple hover:bg-purple hover:text-white" />
+                                </div>
+                                <div className="absolute hidden md:block md:-right-12 top-1/2 -translate-y-1/2">
+                                    <CarouselNext className="relative bg-background border-purple hover:bg-purple hover:text-white" />
                                 </div>
                             </Carousel>
                             <Button
