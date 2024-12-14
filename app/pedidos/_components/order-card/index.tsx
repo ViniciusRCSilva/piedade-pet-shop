@@ -1,7 +1,7 @@
 import { Badge } from "@/app/_components/ui/badge";
 import { Card } from "@/app/_components/ui/card";
 import { formatters } from "@/app/_utils/utils";
-import { SerializedOrder } from "@/app/admin-page/_helper";
+import { SerializedOrder } from "@/app/_helper";
 import AddToCart from "../button-add-to-cart";
 
 const OrderCard = ({ orders }: { orders: SerializedOrder[] }) => {

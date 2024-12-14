@@ -2,7 +2,7 @@
 
 import { useCart } from "@/app/_components/cart/context/cartContext";
 import { Button } from "@/app/_components/ui/button";
-import { SerializedOrder } from "@/app/admin-page/_helper";
+import { SerializedOrder } from "@/app/_helper";
 import { RefreshCwIcon } from "lucide-react";
 import { toast } from "sonner";
 
