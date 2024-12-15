@@ -12,7 +12,7 @@ const OrderCard = ({ orders }: { orders: SerializedOrder[] }) => {
                     <p className="block font-bold text-muted-foreground lg:hidden">Pedido #{order.id}</p>
                     <div className="flex items-start justify-between md:items-center">
                         <div className="flex flex-col gap-1">
-                            <p className="hidden font-bold text-muted-foreground md:block">Pedido #{order.id}</p>
+                            <p className="hidden font-bold text-muted-foreground lg:block">Pedido #{order.id}</p>
                             <p className="text-sm text-muted-foreground">Pedido realizado em <span className="font-semibold">{formatters.date(order.createdAt)}</span></p>
                             {order.status === "CONCLUDED" && (
                                 <p className="text-sm text-muted-foreground">

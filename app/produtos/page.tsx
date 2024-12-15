@@ -1,4 +1,5 @@
 import Cart from "../_components/cart";
+import Footer from "../_components/footer";
 import { db } from "../_lib/prisma";
 import HeroSectionCarouselProducts from "./_components/hero-section";
 import ProductList from "./_components/products-list";
@@ -27,8 +28,8 @@ const Products = async () => {
 
     return (
         <>
-            <main className="pt-[72px]">
-                <div className="fixed bottom-0 right-0 m-5 lg:m-10 z-40">
+            <main className="flex flex-col min-h-screen pt-[72px]">
+                <div className="fixed bottom-0 right-0 m-5 z-40 lg:m-10">
                     <Cart />
                 </div>
 
@@ -53,14 +54,11 @@ const Products = async () => {
                     <div className="w-full h-[1px] bg-purple/20" />
                 </div>
 
-                <section className="h-fit flex items-center px-6 mb-10 lg:px-20">
+                <section className="flex-1 h-fit flex items-center px-6 mb-10 lg:px-20">
                     <ProductList initialProducts={serializedProducts} />
                 </section>
 
-                {/* Footer Section */}
-                <footer className="flex h-[4vh] items-center justify-center bg-purple-foreground text-sm text-white lg:text-base">
-                    <p>&copy; 2024 Piedade Pet Shop. Todos os direitos reservados.</p>
-                </footer>
+                <Footer />
             </main>
         </>
     );

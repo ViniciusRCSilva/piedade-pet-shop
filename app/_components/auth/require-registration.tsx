@@ -30,11 +30,11 @@ export function RequireRegistration({ children }: RequireRegistrationProps) {
                 const dbUser = await checkRegistration(user.id)
 
                 if (isMounted && (!dbUser || !dbUser.phone || !dbUser.address)) {
-                    router.replace("/registro")
+                    router.replace("/cadastro")
                 }
             } catch (error) {
                 console.error("Error checking user registration:", error)
-                if (isMounted) router.replace("/registro")
+                if (isMounted) router.replace("/cadastro")
             } finally {
                 if (isMounted) setIsChecking(false)
             }

@@ -45,6 +45,16 @@ export const filterProductsByCategory = (products: Product[], categories: Produc
     return products.filter(product => categories.includes(product.category));
 }
 
+export const formatPhoneNumber = (value: string) => {
+    const digits = value.replace(/\D/g, "");
+
+    if (digits.length <= 11) {
+        return digits.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+    }
+
+    return digits.slice(0, 11).replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+}
+
 export const AVAILABLE_IMAGES = [
     ["capitao-dog.png", "Capitão Dog"],
     ["chanin-premium.png", "Chanin Premium"],
@@ -78,4 +88,5 @@ export const formatters = {
     filterProductsByCategory: (products: Product[], categories: ProductCategory[]) => filterProductsByCategory(products, categories),
     getAvailableImages: () => AVAILABLE_IMAGES,
     priceRange: (value: number) => priceRanges.find(range => range.min <= value && range.max >= value)?.label ?? "Todos os preços",
+    formatPhoneNumber: (value: string) => formatPhoneNumber(value),
 }

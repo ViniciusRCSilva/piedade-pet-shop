@@ -41,7 +41,7 @@ const ViewOrderDialog = ({ open, onOpenChange, order }: ViewOrderDialogProps) =>
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="mx-auto max-w-lg p-6">
+            <DialogContent className="mx-auto max-w-2xl p-6">
                 <DialogHeader>
                     <DialogTitle className="text-center text-xl font-bold">
                         Visualizar Pedido

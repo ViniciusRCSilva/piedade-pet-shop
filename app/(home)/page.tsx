@@ -4,6 +4,7 @@ import ProductsSection from "./_components/products-section";
 import ContactsSection from "./_components/contacts-section";
 import BrandsSection from "./_components/brands-section";
 import AboutUsSection from "./_components/about-us-section";
+import Footer from "../_components/footer";
 
 const Home = async () => {
   return (
@@ -47,9 +48,7 @@ const Home = async () => {
         </section>
 
         {/* Footer Section */}
-        <footer className="flex h-[4vh] items-center justify-center bg-purple-foreground text-sm text-white lg:text-base">
-          <p>&copy; 2024 Piedade Pet Shop. Todos os direitos reservados.</p>
-        </footer>
+        <Footer />
       </main>
     </>
   );

@@ -4,16 +4,20 @@ import NavbarContent from "./navbar-content";
 
 const Navbar = async () => {
     const clerkUser = await currentUser();
-    const isAdmin = clerkUser?.publicMetadata.role === "admin"
+    const isAdmin = clerkUser?.publicMetadata.role === "admin";
+
+    if (!clerkUser) {
+        return <NavbarContent userdb={null} isAdmin={false} />;
+    }
 
     const user = await db.user.findUnique({
         where: {
-            clerkId: clerkUser?.id
+            clerkId: clerkUser.id
         }
-    })
+    });
 
     return (
-        <NavbarContent user={user} isAdmin={isAdmin} />
+        <NavbarContent userdb={user} isAdmin={isAdmin} />
     );
 }
 

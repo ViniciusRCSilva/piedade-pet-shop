@@ -3,20 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../../ui/button";
-import { SignedIn, SignedOut, SignInButton, UserButton, SignOutButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "../../ui/sheet";
 import { House, InstagramLogo, Layout, List, Scroll, SignIn, SignOut, Storefront, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { User } from "@prisma/client";
 import { usePathname } from "next/navigation";
 
 interface NavbarContentProps {
-    user: User | null;
+    userdb: User | null;
     isAdmin: boolean;
 }
 
-const NavbarContent = ({ user, isAdmin }: NavbarContentProps) => {
+const NavbarContent = ({ userdb, isAdmin }: NavbarContentProps) => {
+    const { user } = useUser();
     const pathname = usePathname();
-    const showNavBar = pathname !== "/registro";
+    const showNavBar = pathname !== "/cadastro";
 
     return (
         <>
@@ -44,25 +45,28 @@ const NavbarContent = ({ user, isAdmin }: NavbarContentProps) => {
 
                                     <div className="border-t pt-6">
                                         <SignedIn>
-                                            <div className="flex items-center gap-3">
-                                                <UserButton
-                                                    appearance={{
-                                                        elements: {
-                                                            avatarBox: "h-10 w-10"
-                                                        }
-                                                    }}
-                                                />
-                                                <div className="flex flex-col">
-                                                    <p>
-                                                        {user?.name}
+                                            <Link className="flex items-center gap-3 group" href="/perfil">
+                                                {user?.hasImage && (
+                                                    <Image
+                                                        src={user?.imageUrl}
+                                                        alt={`${userdb?.name} Avatar`}
+                                                        width={40}
+                                                        height={40}
+                                                        className="rounded-full"
+                                                    />
+                                                )}
+
+                                                <div className="flex flex-col text-left">
+                                                    <p className="group-hover:underline">
+                                                        {userdb?.name}
                                                     </p>
                                                     <p
                                                         className="text-sm text-muted-foreground"
                                                     >
-                                                        {user?.email}
+                                                        {userdb?.email}
                                                     </p>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         </SignedIn>
 
                                         <SignedOut>

@@ -65,10 +65,6 @@ export default function ProductLoading() {
                         </div>
                     </div>
                 </section>
-
-                <footer className="flex h-[4vh] items-center justify-center bg-purple-foreground text-sm text-white lg:text-base">
-                    <p> 2024 Piedade PetShop. Todos os direitos reservados.</p>
-                </footer>
             </main>
         </>
     );
