@@ -71,14 +71,14 @@ const OrderCard = ({ orders }: { orders: SerializedOrder[] }) => {
                     </div>
 
                     <div className="flex items-center justify-between border-t pt-4">
-                        <p className="text-muted-foreground">
-                            Valor total: <span className="text-lg font-bold text-primary">{formatters.currency(order.totalAmount)}</span>
-                        </p>
                         <div className="flex items-center gap-2">
                             {order.status === "CONCLUDED" && (
                                 <AddToCart order={order} />
                             )}
                         </div>
+                        <p className="text-muted-foreground">
+                            Valor total:<span className="text-lg ml-2 font-bold text-primary">{formatters.currency(order.totalAmount)}</span>
+                        </p>
                     </div>
                 </Card>
             ))}
