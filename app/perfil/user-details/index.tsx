@@ -1,10 +1,13 @@
 "use client"
 
+import { Button } from "@/app/_components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/_components/ui/card";
 import { formatPhoneNumber } from "@/app/_utils/utils";
 import { useUser } from "@clerk/nextjs";
 import { User } from "@prisma/client";
+import { PenBoxIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface UserDetailsProps {
     userInfo: User | null;
@@ -42,7 +45,15 @@ const UserDetails = ({
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-muted-foreground">Informações Pessoais</CardTitle>
+                    <CardTitle className="flex w-full items-center justify-between text-muted-foreground">
+                        Informações Pessoais
+                        <Button asChild variant="link">
+                            <Link href="/perfil" className="flex items-center text-purple">
+                                <PenBoxIcon className="w-4 h-4" />
+                                <p className="text-sm font-semibold">Editar perfil</p>
+                            </Link>
+                        </Button>
+                    </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
