@@ -57,7 +57,7 @@ const CartProduct = ({ id, name, value, quantity, isKgProduct, availableQuantity
                 </div>
                 <div className="flex flex-col">
                     <div>
-                        <CardTitle className="text-lg text-muted-foreground">
+                        <CardTitle className="text-base text-muted-foreground text-justify md:text-lg">
                             <Link href={`/produto/${id}`} className="hover:underline">
                                 {name}
                             </Link>
@@ -128,7 +128,7 @@ const CartProduct = ({ id, name, value, quantity, isKgProduct, availableQuantity
                         className="gap-2"
                     >
                         <XIcon className="h-4 w-4" />
-                        Remover
+                        <span className="hidden md:block">Remover</span>
                     </Button>
                 </div>
             </CardContent>
