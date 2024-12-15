@@ -71,6 +71,7 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
                     color: 'white',
                     border: 'none'
                 },
+                duration: 5000
             });
         }
     };
