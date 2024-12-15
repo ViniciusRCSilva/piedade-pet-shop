@@ -2,9 +2,7 @@ import Cart from "../_components/cart";
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "../_lib/prisma";
-import OrderCard from "./_components/order-card";
-import Link from "next/link";
-import { Button } from "../_components/ui/button";
+import OrdersContent from "./_components/orders-content";
 import { Scroll } from "@phosphor-icons/react/dist/ssr";
 import {
     Breadcrumb,
@@ -16,12 +14,31 @@ import {
 } from "@/app/_components/ui/breadcrumb";
 import Footer from "../_components/footer";
 
-const OrdersPage = async () => {
+const ITEMS_PER_PAGE = 5;
+
+interface SearchParams {
+    page?: string;
+}
+
+export default async function OrdersPage({
+    searchParams,
+}: {
+    searchParams: SearchParams
+}) {
     const user = await currentUser();
+    const page = Number(searchParams?.page) || 1;
 
     if (!user) {
         redirect("/");
     }
+
+    const totalOrders = await db.order.count({
+        where: {
+            userId: user.id
+        }
+    });
+
+    const totalPages = Math.ceil(totalOrders / ITEMS_PER_PAGE);
 
     const orders = await db.order.findMany({
         where: {
@@ -36,7 +53,9 @@ const OrdersPage = async () => {
         },
         orderBy: {
             createdAt: "desc"
-        }
+        },
+        skip: (page - 1) * ITEMS_PER_PAGE,
+        take: ITEMS_PER_PAGE
     });
 
     const serializedOrders = orders.map(order => ({
@@ -77,40 +96,18 @@ const OrdersPage = async () => {
             </div>
 
             <div className="flex-1 w-full h-full pt-10 px-6 lg:px-20">
-                <div className="h-full mx-auto">
-                    <div className="h-full p-6">
-                        <div className="flex flex-col gap-2 mb-8">
-                            <div className="flex items-center gap-3">
-                                <Scroll size={28} className="text-primary" />
-                                <h1 className="font-bold text-2xl text-muted-foreground">Meus Pedidos</h1>
-                            </div>
-                            <p className="text-muted-foreground text-sm pl-10">Acompanhe seus pedidos e histórico de compras</p>
-                        </div>
-
-                        {serializedOrders.length === 0 ? (
-                            <div className="flex w-full h-full items-center justify-center text-muted-foreground">
-                                <div className="flex flex-col items-center justify-center border p-6 rounded-md">
-                                    <Scroll size={40} className="mb-4 opacity-50" />
-                                    <p className="text-center">Você ainda não fez nenhum pedido.</p>
-                                    <Button asChild variant="link" className="text-primary">
-                                        <Link href="/produtos">
-                                            <p className="text-center text-sm">Que tal começar a comprar agora?</p>
-                                        </Link>
-                                    </Button>
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="bg-muted h-fit rounded-md z-0">
-                                <OrderCard orders={serializedOrders || []} />
-                            </div>
-                        )}
+                <div className="flex flex-col gap-2 mb-2">
+                    <div className="flex items-center gap-3">
+                        <Scroll size={28} className="text-primary" />
+                        <h1 className="font-bold text-2xl text-muted-foreground">Meus Pedidos</h1>
                     </div>
+                    <p className="text-muted-foreground text-sm pl-10">Acompanhe seus pedidos e histórico de compras</p>
                 </div>
+
+                <OrdersContent orders={serializedOrders} totalPages={totalPages} />
             </div>
 
             <Footer />
         </div>
     )
 };
-
-export default OrdersPage;

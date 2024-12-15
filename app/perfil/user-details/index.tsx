@@ -19,7 +19,7 @@ const UserDetails = ({
     const { user } = useUser();
 
     return (
-        <div className="flex flex-col gap-6 xl:justify-between">
+        <div className="flex flex-col gap-6">
             <Card className="border-none shadow-none bg-transparent">
                 <CardContent className="p-0">
                     <div className="flex flex-col sm:flex-row items-center gap-6">
