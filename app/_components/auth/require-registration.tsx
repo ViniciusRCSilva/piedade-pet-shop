@@ -40,10 +40,13 @@ export function RequireRegistration({ children }: RequireRegistrationProps) {
             }
         }
 
-        verifyRegistration()
+        const timeoutId = setTimeout(() => {
+            verifyRegistration()
+        }, 100)
 
         return () => {
             isMounted = false
+            clearTimeout(timeoutId)
         }
     }, [isLoaded, user, router])
 
@@ -61,7 +64,7 @@ export function RequireRegistration({ children }: RequireRegistrationProps) {
                     />
                     {user && (
                         <div className="flex flex-col items-center gap-2">
-                            <h2 className="text-xl font-semibold text-foreground">
+                            <h2 className="text-xl font-semibold text-muted-foreground">
                                 Verificando sua conta
                             </h2>
                             <p className="text-sm text-muted-foreground">
