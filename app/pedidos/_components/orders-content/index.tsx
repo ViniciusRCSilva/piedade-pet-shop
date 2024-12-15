@@ -46,7 +46,7 @@ const OrdersContent = ({ orders, totalPages }: OrdersContentProps) => {
                     </div>
 
                     {totalPages > 1 && (
-                        <div className="flex justify-center mt-4">
+                        <div className="flex justify-center mt-4 mb-10">
                             <Pagination>
                                 <PaginationContent>
                                     {page > 1 && (
