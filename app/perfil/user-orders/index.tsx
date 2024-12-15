@@ -13,7 +13,7 @@ const UserOrders = ({ orders }: UserOrdersProps) => {
     return (
         <div className="h-full">
             {orders.length === 0 ? (
-                <Card className="h-full">
+                <Card className="h-fit xl:h-full">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
                         <div className="text-muted-foreground">
                             <CardTitle>Último Pedido</CardTitle>
@@ -28,7 +28,7 @@ const UserOrders = ({ orders }: UserOrdersProps) => {
                     <CardContent className="h-full pt-4 border-t">
                         <div className="flex flex-col h-[70%] items-center justify-center border p-6 rounded-md xl:h-[75%]">
                             <Scroll size={40} className="mb-4 opacity-50" />
-                            <p className="text-center">Você ainda não fez nenhum pedido.</p>
+                            <p className="text-center text-muted-foreground">Você ainda não fez nenhum pedido.</p>
                             <Button asChild variant="link" className="text-primary">
                                 <Link href="/produtos">
                                     <p className="text-center text-sm">Que tal começar a comprar agora?</p>

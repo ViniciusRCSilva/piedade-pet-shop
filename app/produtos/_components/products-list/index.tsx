@@ -89,7 +89,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
                                 {/* Reset Filters Button - Mobile */}
                                 {hasActiveFilters && (
                                     <Button
-                                        variant="outline"
+                                        variant="destructive"
                                         onClick={resetFilters}
                                         className="w-full"
                                     >
