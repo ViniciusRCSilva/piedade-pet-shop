@@ -19,6 +19,7 @@ import {
     TooltipTrigger,
 } from "@/app/_components/ui/tooltip";
 import Link from "next/link";
+import FavoriteButton from "@/app/_components/favorite-button";
 
 interface ProductCardProps {
     id: string;
@@ -91,29 +92,32 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
     }, [availableQuantity]);
 
     return (
-        <Card className={`flex flex-col h-full w-full bg-white ${disabled ? "opacity-50" : ""}`}>
+        <Card className={`relative flex flex-col h-full w-full bg-white ${disabled ? "opacity-50" : ""}`}>
+            {isSignedIn ? (
+                <FavoriteButton productId={id} className="absolute top-5 right-6" />
+            ) : null}
             <CardHeader className="flex-grow group">
-                <Link href={`/produto/${id}`}>
-                    <div className="flex w-full items-center justify-center mb-2">
-                        <div className="flex w-[250px] h-[250px] items-center justify-center rounded-lg border">
-                            <Image
-                                src={image}
-                                alt={name}
-                                className="object-cover"
-                                width={150}
-                                height={150}
-                            />
+                <div className="flex justify-between items-start">
+                    <Link href={`/produto/${id}`} className="flex-1 group">
+                        <div className="flex w-full items-center justify-center mb-2">
+                            <div className="flex w-[250px] h-[250px] items-center justify-center rounded-lg border">
+                                <Image
+                                    src={image}
+                                    alt={name}
+                                    className="object-cover"
+                                    width={150}
+                                    height={150}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <CardTitle className="text-lg text-muted-foreground font-normal group-hover:underline">
-                        {name}
-                    </CardTitle>
-                    <CardDescription className="text-2xl font-bold text-primary">
-                        <MoneyFormat value={value} />
-                        {category === "KG_FEED" && "/KG"}
-                        <p className="font-normal text-sm text-muted-foreground">{formatters.category(category)}</p>
-                    </CardDescription>
-                </Link>
+                        <CardTitle className="text-lg text-muted-foreground font-normal group-hover:underline">{name}</CardTitle>
+                        <CardDescription className="text-2xl font-bold text-primary">
+                            <MoneyFormat value={value} />
+                            {category === "KG_FEED" && "/KG"}
+                            <p className="font-normal text-sm text-muted-foreground">{formatters.category(category)}</p>
+                        </CardDescription>
+                    </Link>
+                </div>
             </CardHeader>
 
             <CardContent className="mt-auto">

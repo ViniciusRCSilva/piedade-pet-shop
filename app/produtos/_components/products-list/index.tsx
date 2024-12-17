@@ -10,6 +10,7 @@ import { SerializedProduct } from "@/app/_helper";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/app/_components/ui/sheet";
 import { Button } from "@/app/_components/ui/button";
 import { MagnifyingGlass, Sliders, Trash } from "@phosphor-icons/react/dist/ssr";
+import { useAuth } from "@clerk/nextjs";
 
 interface ProductListProps {
     initialProducts: SerializedProduct[];
@@ -20,6 +21,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<string>("all");
     const [selectedPriceRange, setSelectedPriceRange] = useState<string>("all");
+    const { isSignedIn } = useAuth();
 
     const resetFilters = () => {
         setSearchTerm("");
@@ -64,7 +66,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
         }
 
         setFilteredProducts(filtered);
-    }, [searchTerm, selectedCategory, selectedPriceRange, initialProducts]);
+    }, [searchTerm, selectedCategory, selectedPriceRange, initialProducts, isSignedIn]);
 
     return (
         <div className="w-full">
@@ -233,7 +235,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
 
                 {/* Products Grid */}
                 <div className="flex-1">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                         {filteredProducts.map((product) => (
                             <ProductCard
                                 key={product.id}

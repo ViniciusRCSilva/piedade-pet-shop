@@ -25,25 +25,27 @@ enum OrderStatus {
 }
 
 model Product {
-    id          String          @id @default(uuid())
-    name        String
-    description String
-    value       Decimal         @db.Decimal(10, 2)
-    category    ProductCategory
-    quantity    Decimal         @db.Decimal(10, 2)
-    image       String
-    createdAt   DateTime        @default(now())
-    updatedAt   DateTime        @updatedAt
-    OrderItem   OrderItem[]
+    id                    String                  @id @default(uuid())
+    name                  String
+    description           String
+    value                 Decimal                 @db.Decimal(10, 2)
+    category              ProductCategory
+    quantity              Decimal                 @db.Decimal(10, 2)
+    image                 String
+    createdAt             DateTime                @default(now())
+    updatedAt             DateTime                @updatedAt
+    OrderItem             OrderItem[]
+    UserFavoritesProducts UserFavoritesProducts[]
 
     @@map("products")
 }
 
 model Order {
     id          String      @id @default(uuid())
-    userId      String // Clerk User ID
+    userId      String
     userName    String
     userPhone   String
+    userAddress String
     status      OrderStatus @default(PENDING)
     totalAmount Decimal     @db.Decimal(10, 2)
     items       OrderItem[]
@@ -66,15 +68,27 @@ model OrderItem {
     @@map("order_items")
 }
 
+model UserFavoritesProducts {
+    id        String  @id @default(uuid())
+    userId    String
+    productId String
+    user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    product   Product @relation(fields: [productId], references: [id])
+
+    @@unique([userId, productId])
+    @@map("user_favorites_products")
+}
+
 model User {
-    id        String   @id @default(uuid())
-    clerkId   String   @unique // Clerk User ID
-    name      String
-    email     String
-    phone     String
-    address   String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id                String                  @id @default(uuid())
+    clerkId           String                  @unique // Clerk User ID
+    name              String
+    email             String
+    phone             String
+    address           String
+    createdAt         DateTime                @default(now())
+    updatedAt         DateTime                @updatedAt
+    favoritesProducts UserFavoritesProducts[]
 
     @@map("users")
 }

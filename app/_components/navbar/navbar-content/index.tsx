@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "../../ui/button";
 import { SignedIn, SignedOut, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "../../ui/sheet";
-import { House, InstagramLogo, Layout, List, Scroll, SignIn, SignOut, Storefront, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
+import { Heart, House, InstagramLogo, Layout, List, Scroll, SignIn, SignOut, Storefront, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { User } from "@prisma/client";
 import { usePathname } from "next/navigation";
 
@@ -110,6 +110,16 @@ const NavbarContent = ({ userdb, isAdmin }: NavbarContentProps) => {
                                             <Storefront className="h-4 w-4" />
                                             Produtos
                                         </Link>
+
+                                        {user && (
+                                            <Link
+                                                href="/produtos-favoritos"
+                                                className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
+                                            >
+                                                <Heart className="h-4 w-4" />
+                                                Produtos favoritos
+                                            </Link>
+                                        )}
 
                                         {user && (
                                             <Link

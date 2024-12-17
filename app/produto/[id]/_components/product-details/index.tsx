@@ -11,6 +11,7 @@ import { Minus, Plus, SignIn } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
+import FavoriteButton from "@/app/_components/favorite-button";
 
 interface ProductDetailsProps {
     product: SerializedProduct;
@@ -94,6 +95,9 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                 <div className="w-full flex flex-col items-center px-10 lg:px-0">
                     <div className="flex flex-col w-full h-full justify-between">
                         <div className="flex flex-col gap-4">
+                            {isSignedIn ? (
+                                <FavoriteButton productId={product.id} className="self-end" />
+                            ) : null}
                             <h1 className="text-4xl text-muted-foreground">{product.name}</h1>
 
                             <div className="flex items-center gap-2">
