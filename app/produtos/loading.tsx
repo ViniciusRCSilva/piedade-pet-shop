@@ -17,7 +17,17 @@ export default function ProductsLoading() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         {[...Array(8)].map((_, i) => (
-                            <Skeleton key={i} className="h-[400px] rounded-lg" />
+                            <div key={i} className="flex flex-col gap-4 p-4 rounded-lg border">
+                                <Skeleton className="aspect-square w-full rounded-lg" />
+                                <div className="space-y-3">
+                                    <Skeleton className="h-5 w-3/4" />
+                                    <Skeleton className="h-4 w-1/2" />
+                                    <div className="flex justify-between items-center pt-2">
+                                        <Skeleton className="h-6 w-24" />
+                                        <Skeleton className="h-8 w-8 rounded-full" />
+                                    </div>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>
