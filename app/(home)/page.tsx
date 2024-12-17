@@ -25,7 +25,7 @@ const Home = async () => {
         </section>
 
         <div className="flex w-full justify-center">
-          <div className="w-[90%] h-[1px] bg-purple/20" />
+          <div className="w-[90%] h-[1px] bg-border" />
         </div>
 
         {/* Brands Section */}
@@ -34,7 +34,7 @@ const Home = async () => {
         </section>
 
         <div className="flex w-full justify-center">
-          <div className="w-[90%] h-[1px] bg-purple/20" />
+          <div className="w-[90%] h-[1px] bg-border" />
         </div>
 
         {/* About Us Section */}

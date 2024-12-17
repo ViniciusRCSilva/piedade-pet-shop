@@ -46,7 +46,7 @@ const CartProduct = ({ id, name, value, quantity, isKgProduct, availableQuantity
     return (
         <Card className="bg-white">
             <CardHeader>
-                <div className="flex w-[150px] h-[150px] p-4 items-center justify-center rounded-lg border border-muted">
+                <div className="flex w-[150px] h-[150px] p-4 items-center justify-center rounded-lg border">
                     <Image
                         src={image}
                         alt={name}
