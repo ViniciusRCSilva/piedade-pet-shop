@@ -74,9 +74,14 @@ export default async function FavoriteProductsPage() {
                     <p className="text-xl mt-4">Você ainda não tem produtos favoritos</p>
                 </div>
             ) : (
-                <section className="flex-1 h-fit flex items-center px-6 mb-10 lg:px-20">
+                <div className="flex-1 w-full h-full pt-10 px-6 mb-10 lg:px-20">
+                    <div className="flex items-center gap-3 mb-10">
+                        <Heart size={28} className="text-primary" />
+                        <h1 className="font-bold text-2xl text-muted-foreground">Produtos Favoritos</h1>
+                    </div>
+
                     <ProductsList initialProducts={products} />
-                </section>
+                </div>
             )}
             <Footer />
         </div>
