@@ -48,7 +48,7 @@ const UserDetails = ({
                     <CardTitle className="flex w-full items-center justify-between text-muted-foreground">
                         Informações Pessoais
                         <Button asChild variant="link">
-                            <Link href="/perfil" className="flex items-center text-purple">
+                            <Link href="/editar-perfil" className="flex items-center text-purple">
                                 <PenBoxIcon className="w-4 h-4" />
                                 <p className="text-sm font-semibold">Editar perfil</p>
                             </Link>
