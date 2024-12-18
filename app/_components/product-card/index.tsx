@@ -75,6 +75,9 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
                 duration: 5000
             });
         }
+
+        setProductQuantity(1);
+        setKgQuantity(1);
     };
 
     const handleKgIncrement = () => {

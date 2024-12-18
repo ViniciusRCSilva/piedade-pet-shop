@@ -56,11 +56,59 @@ export const createOrder = async (data: CreateOrderData) => {
                 }
             }
         })
+        await handleProductQuantities(order.id, "PENDING")
+        revalidatePath("/produtos")
         revalidatePath("/pedidos")
         return order
     } catch (error) {
         console.error("[ORDER_CREATE]", error)
         throw new Error(`Failed to create order: ${error}`)
+    }
+}
+
+async function handleProductQuantities(orderId: string, status: OrderStatus) {
+    try {
+        // Get the order with its items
+        const order = await db.order.findUnique({
+            where: { id: orderId },
+            include: { items: true }
+        });
+
+        if (!order || !order.items) {
+            throw new Error("Order not found or has no items");
+        }
+
+        // For each item in the order
+        for (const item of order.items) {
+            const product = await db.product.findUnique({
+                where: { id: item.productId }
+            });
+
+            if (!product) {
+                console.error(`Product ${item.productId} not found`);
+                continue;
+            }
+
+            let newQuantity = Number(product.quantity);
+
+            // If status is PENDING, subtract the quantity
+            if (status === "PENDING") {
+                newQuantity = Number(product.quantity) - Number(item.quantity);
+            }
+            // If status is CANCELLED, add the quantity back
+            else if (status === "CANCELLED") {
+                newQuantity = Number(product.quantity) + Number(item.quantity);
+            }
+
+            // Update the product quantity
+            await db.product.update({
+                where: { id: item.productId },
+                data: { quantity: Math.max(0, newQuantity) } // Ensure quantity doesn't go below 0
+            });
+        }
+    } catch (error) {
+        console.error("[HANDLE_PRODUCT_QUANTITIES]", error);
+        throw new Error("Failed to handle product quantities");
     }
 }
 
@@ -74,6 +122,9 @@ export const updateOrderStatus = async (orderId: string, status: OrderStatus) =>
                 status,
             },
         });
+
+        // Handle product quantities when status changes
+        await handleProductQuantities(orderId, status);
 
         revalidatePath("/admin");
         revalidatePath("/pedidos");
