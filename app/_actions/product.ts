@@ -37,8 +37,15 @@ export async function createProduct(params: CreateProductParams) {
             },
         })
 
+        // Convert Decimal values to plain numbers before returning
+        const serializedProduct = {
+            ...product,
+            value: Number(product.value),
+            quantity: Number(product.quantity)
+        }
+
         revalidatePath("/admin")
-        return product
+        return serializedProduct
     } catch (error) {
         console.error("[PRODUCT_CREATE]", error)
         throw new Error("Failed to create product")
@@ -61,8 +68,14 @@ export async function updateProduct(params: UpdateProductParams) {
             },
         })
 
+        const serializedProduct = {
+            ...product,
+            value: Number(product.value),
+            quantity: Number(product.quantity)
+        }
+
         revalidatePath("/admin")
-        return product
+        return serializedProduct
     } catch (error) {
         console.error("[PRODUCT_UPDATE]", error)
         throw new Error("Failed to update product")

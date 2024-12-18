@@ -77,8 +77,8 @@ export default function CreateProductDialog({
                 name: values.name,
                 description: values.description,
                 category: values.category,
-                value: parseFloat(values.value),
-                quantity: parseInt(values.quantity),
+                value: Number(values.value),
+                quantity: Number(values.quantity),
                 image: values.image || "",
             })
 
