@@ -16,7 +16,7 @@ import {
 const Products = async () => {
     const products = await db.product.findMany({
         orderBy: {
-            quantity: "desc"
+            createdAt: "desc",
         }
     });
 

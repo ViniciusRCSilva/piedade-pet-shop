@@ -124,6 +124,9 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
             </CardHeader>
 
             <CardContent className="mt-auto">
+                {availableQuantity === 1 ? (
+                    <p className="text-sm font-semibold text-red-500">* Aproveite! Resta somente {availableQuantity} unidade!</p>
+                ) : null}
                 <span className="text-sm text-muted-foreground">Quantidade</span>
                 <div className="flex justify-between gap-4 items-center">
                     {category === "KG_FEED" ? (
