@@ -42,11 +42,11 @@ const ViewOrderDialog = ({ open, onOpenChange, order }: ViewOrderDialogProps) =>
     };
 
     useEffect(() => {
-        setMessage(`Olá, ${order.userName}!%0aVocê fez um pedido no valor de *${formatters.currency(order.totalAmount)}*.%0aOs itens do pedido são: %0a• ${order.items.map(item => `${item.quantity} ${item.category === 'KG_FEED' ? 'kg' : item.quantity === 1 ? 'unidade' : 'unidades'} de ${item.product.name}`).join('%0a• ')}.%0aPodemos *confirmar* o seu pedido?`)
+        setMessage(`Olá, ${order.userName}!%0aVocê fez um pedido no valor de *${formatters.currency(order.totalAmount)}*.%0aOs itens do pedido são: %0a• ${order.items.map(item => `${item.quantity} ${item.category === 'KG_FEED' ? 'kg' : item.quantity === 1 ? 'unidade' : 'unidades'} de ${item.product.name}`).join('%0a• ')}.%0aPodemos *confirmar* o seu pedido? 💜`)
     }, [order])
 
     const handleSubmitMessage = () => {
-        window.open(`https://wa.me/55${order.userPhone}?text=${message}`, '_blank')
+        window.open(`https://api.whatsapp.com/send/?phone=55${order.userPhone}&text=${message}`, '_blank')
     }
 
     return (
