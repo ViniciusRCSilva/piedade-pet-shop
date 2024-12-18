@@ -54,12 +54,27 @@ export const createOrder = async (data: CreateOrderData) => {
                         category: item.category
                     }))
                 }
+            },
+            include: {
+                items: true
             }
         })
+
+        // Convert Decimal values to plain numbers before returning
+        const serializedOrder = {
+            ...order,
+            totalAmount: Number(order.totalAmount),
+            items: order.items.map(item => ({
+                ...item,
+                value: Number(item.value),
+                quantity: Number(item.quantity)
+            }))
+        }
+
         await handleProductQuantities(order.id, "PENDING")
         revalidatePath("/produtos")
         revalidatePath("/pedidos")
-        return order
+        return serializedOrder
     } catch (error) {
         console.error("[ORDER_CREATE]", error)
         throw new Error(`Failed to create order: ${error}`)
