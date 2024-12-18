@@ -15,6 +15,7 @@ interface CreateOrderData {
     userId: string
     userName: string
     userPhone: string
+    userAddress: string
     totalAmount: number
     items: OrderItem[]
 }
@@ -43,6 +44,7 @@ export const createOrder = async (data: CreateOrderData) => {
                 userId: data.userId,
                 userName: data.userName,
                 userPhone: data.userPhone,
+                userAddress: data.userAddress,
                 totalAmount: Number(totalAmount),
                 items: {
                     create: items.map(item => ({

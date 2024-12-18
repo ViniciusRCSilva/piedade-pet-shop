@@ -21,6 +21,16 @@ export const columns: ColumnDef<SerializedOrder>[] = [
         cell: ({ row }) => row.original.userName,
     },
     {
+        accessorKey: "phone",
+        header: "Telefone",
+        cell: ({ row }) => formatters.formatPhoneNumber(row.original.userPhone),
+    },
+    {
+        accessorKey: "address",
+        header: "Endereço",
+        cell: ({ row }) => row.original.userAddress,
+    },
+    {
         accessorKey: "status",
         header: "Status",
         cell: ({ row }) => (

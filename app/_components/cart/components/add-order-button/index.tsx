@@ -1,6 +1,7 @@
 import { Button } from "@/app/_components/ui/button"
 import { CheckIcon, LoaderCircleIcon } from "lucide-react"
 import { createOrder } from "@/app/_actions/order"
+import { getUserByClerkId } from "@/app/_actions/user"
 import { useUser } from "@clerk/nextjs"
 import { toast } from "sonner"
 import { useCart } from "../../context/cartContext"
@@ -22,7 +23,7 @@ interface AddOrderButtonProps {
 }
 
 const AddOrderButton = ({ cartItems, cartValue }: AddOrderButtonProps) => {
-    const { user, isLoaded } = useUser()
+    const { user: clerkUser, isLoaded } = useUser()
     const { removeAllFromCart } = useCart()
     const [dialogOpen, setDialogOpen] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -43,7 +44,7 @@ const AddOrderButton = ({ cartItems, cartValue }: AddOrderButtonProps) => {
 
     const onSubmit = async () => {
         try {
-            if (!isLoaded || !user) {
+            if (!isLoaded || !clerkUser) {
                 toast.error("Você precisa estar logado para fazer um pedido")
                 return
             }
@@ -54,6 +55,13 @@ const AddOrderButton = ({ cartItems, cartValue }: AddOrderButtonProps) => {
             }
 
             setLoading(true)
+
+            const user = await getUserByClerkId(clerkUser.id)
+
+            if (!user) {
+                toast.error("Usuário não encontrado")
+                return
+            }
 
             // Format and validate items
             const formattedItems = cartItems.map(item => {
@@ -75,8 +83,9 @@ const AddOrderButton = ({ cartItems, cartValue }: AddOrderButtonProps) => {
 
             const orderData = {
                 userId: user.id,
-                userName: `${user.firstName || ''} ${user.lastName || ''}`.trim(),
-                userPhone: user.phoneNumbers?.[0]?.phoneNumber || "Não informado",
+                userName: user.name,
+                userPhone: user.phone,
+                userAddress: user.address,
                 totalAmount: cartValue,
                 items: formattedItems
             }
@@ -99,6 +108,8 @@ const AddOrderButton = ({ cartItems, cartValue }: AddOrderButtonProps) => {
         } catch (error) {
             console.error("Error creating order:", error)
             toast.error("Erro ao criar pedido")
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -125,7 +136,7 @@ const AddOrderButton = ({ cartItems, cartValue }: AddOrderButtonProps) => {
 
             <Button
                 onClick={onSubmit}
-                disabled={!isLoaded || !user || cartItems.length === 0 || loading}
+                disabled={!isLoaded || !clerkUser || cartItems.length === 0 || loading}
                 className="w-full bg-lime-600 hover:bg-lime-600/90"
             >
                 {loading ? (

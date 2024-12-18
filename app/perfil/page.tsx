@@ -6,21 +6,18 @@ import UserOrders from "./user-orders";
 import Cart from "../_components/cart";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../_components/ui/breadcrumb";
 import Footer from "../_components/footer";
+import { getUserByClerkId } from "../_actions/user";
 
 const Perfil = async () => {
-    const user = await currentUser();
+    const clerkUser = await currentUser();
 
-    if (!user) {
+    if (!clerkUser) {
         revalidatePath("/");
     }
 
-    const userdb = await db.user.findUnique({
-        where: {
-            clerkId: user?.id
-        }
-    })
+    const user = await getUserByClerkId(clerkUser!.id);
 
-    if (!userdb) {
+    if (!user) {
         revalidatePath("/");
     }
 
@@ -81,7 +78,7 @@ const Perfil = async () => {
 
             <div className="flex-1 container mx-auto px-6 py-10">
                 <div className="grid grid-cols-1 xl:grid-cols-[1fr_1.5fr] gap-10">
-                    <UserDetails userInfo={userdb} />
+                    <UserDetails userInfo={user} />
                     <UserOrders orders={serializedOrders} />
                 </div>
             </div>

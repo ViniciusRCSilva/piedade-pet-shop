@@ -2,12 +2,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/app/_compone
 import { SerializedOrder } from "../../../_helper";
 import { formatters } from "@/app/_utils/utils";
 import { Badge } from "@/app/_components/ui/badge";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { OrderStatus } from "@prisma/client";
 import { updateOrderStatus } from "@/app/_actions/order";
 import { toast } from "sonner";
 import { LoaderCircleIcon } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/_components/ui/select";
+import { Button } from "@/app/_components/ui/button";
 
 interface ViewOrderDialogProps {
     open: boolean;
@@ -18,6 +19,7 @@ interface ViewOrderDialogProps {
 const ViewOrderDialog = ({ open, onOpenChange, order }: ViewOrderDialogProps) => {
     const [status, setStatus] = useState<OrderStatus>(order.status);
     const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('')
 
     const handleStatusChange = async (newStatus: OrderStatus) => {
         try {
@@ -39,9 +41,17 @@ const ViewOrderDialog = ({ open, onOpenChange, order }: ViewOrderDialogProps) =>
         }
     };
 
+    useEffect(() => {
+        setMessage(`Olá, ${order.userName}!%0aVocê fez um pedido no valor de *${formatters.currency(order.totalAmount)}*.%0aOs itens do pedido são: %0a• ${order.items.map(item => `${item.quantity} ${item.category === 'KG_FEED' ? 'kg' : item.quantity === 1 ? 'unidade' : 'unidades'} de ${item.product.name}`).join('%0a• ')}.%0aPodemos *confirmar* o seu pedido?`)
+    }, [order])
+
+    const handleSubmitMessage = () => {
+        window.open(`https://wa.me/55${order.userPhone}?text=${message}`, '_blank')
+    }
+
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="mx-auto max-w-2xl p-6">
+            <DialogContent className="mx-auto max-w-2xl p-6 text-muted-foreground">
                 <DialogHeader>
                     <DialogTitle className="text-center text-xl font-bold">
                         Visualizar Pedido
@@ -49,9 +59,20 @@ const ViewOrderDialog = ({ open, onOpenChange, order }: ViewOrderDialogProps) =>
                 </DialogHeader>
                 <div className="flex flex-col gap-4">
                     {/* Informações do cliente */}
-                    <div>
+                    <div className="flex flex-col gap-2">
                         <p>
                             <span className="font-semibold">Cliente:</span> {order.userName}
+                        </p>
+                        <div className="flex items-center justify-between">
+                            <p>
+                                <span className="font-semibold">Telefone:</span> {formatters.formatPhoneNumber(order.userPhone)}
+                            </p>
+                            <Button variant="outline" onClick={handleSubmitMessage}>
+                                Mandar mensagem para o cliente
+                            </Button>
+                        </div>
+                        <p>
+                            <span className="font-semibold">Endereço:</span> {order.userAddress}
                         </p>
                         <p>
                             <span className="font-semibold">Data do pedido:</span> {formatters.date(order.createdAt)}

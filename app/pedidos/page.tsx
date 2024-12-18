@@ -13,6 +13,7 @@ import {
     BreadcrumbSeparator,
 } from "@/app/_components/ui/breadcrumb";
 import Footer from "../_components/footer";
+import { getUserByClerkId } from "../_actions/user";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -25,8 +26,14 @@ export default async function OrdersPage({
 }: {
     searchParams: SearchParams
 }) {
-    const user = await currentUser();
+    const clerkUser = await currentUser();
     const page = Number(searchParams?.page) || 1;
+
+    if (!clerkUser) {
+        redirect("/");
+    }
+
+    const user = await getUserByClerkId(clerkUser.id);
 
     if (!user) {
         redirect("/");
