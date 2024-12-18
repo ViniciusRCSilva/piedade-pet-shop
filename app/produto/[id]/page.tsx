@@ -21,12 +21,13 @@ import {
 import Footer from "@/app/_components/footer";
 
 interface ProductPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage(props: ProductPageProps) {
+    const params = await props.params;
     const products = await db.product.findMany();
 
     const product = await db.product.findUnique({

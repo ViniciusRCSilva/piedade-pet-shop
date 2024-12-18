@@ -21,11 +21,12 @@ interface SearchParams {
     page?: string;
 }
 
-export default async function OrdersPage({
-    searchParams,
-}: {
-    searchParams: SearchParams
-}) {
+export default async function OrdersPage(
+    props: {
+        searchParams: Promise<SearchParams>
+    }
+) {
+    const searchParams = await props.searchParams;
     const clerkUser = await currentUser();
     const page = Number(searchParams?.page) || 1;
 
