@@ -57,7 +57,7 @@ const formatPhoneNumber = (value: string) => {
 
 const formatAddress = (rua: string, numeroRua: string, complemento: string, bairro: string) => {
     if (!rua || !numeroRua || !bairro) return "";
-    
+
     const formattedComplemento = complemento.trim();
     if (formattedComplemento) {
         return `${rua}, ${numeroRua}, ${formattedComplemento} - ${bairro}`;
@@ -67,13 +67,13 @@ const formatAddress = (rua: string, numeroRua: string, complemento: string, bair
 
 const parseAddress = (address: string) => {
     if (!address) return { rua: '', numeroRua: '', complemento: '', bairro: '' };
-    
+
     // Split by hyphen first to separate the bairro
     const [mainPart, bairroPart] = address.split('-').map(part => part.trim());
-    
+
     // Split the main part by commas
     const parts = mainPart.split(',').map(part => part.trim());
-    
+
     const rua = parts[0] || '';
     const numeroRua = parts[1] || '';
     const complemento = parts[2] || '';
@@ -168,7 +168,11 @@ const EditProfile = () => {
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
-                            <BreadcrumbLink href="/perfil">Perfil</BreadcrumbLink>
+                            <BreadcrumbLink href="/">Início</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="/perfil">Minha conta</BreadcrumbLink>
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
