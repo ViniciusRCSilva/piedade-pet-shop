@@ -60,23 +60,27 @@ const ViewOrderDialog = ({ open, onOpenChange, order }: ViewOrderDialogProps) =>
                 <div className="flex flex-col gap-4">
                     {/* Informações do cliente */}
                     <div className="flex flex-col gap-2">
-                        <p>
-                            <span className="font-semibold">Cliente:</span> {order.userName}
-                        </p>
+                        <div className="flex items-center gap-1">
+                            <p className="font-semibold">Cliente:</p>
+                            <p>{order.userName}</p>
+                        </div>
                         <div className="flex items-center justify-between">
-                            <p>
-                                <span className="font-semibold">Telefone:</span> {formatters.formatPhoneNumber(order.userPhone)}
-                            </p>
+                            <div className="flex items-center gap-1">
+                                <p className="font-semibold">Telefone:</p>
+                                <p>{formatters.formatPhoneNumber(order.userPhone)}</p>
+                            </div>
                             <Button variant="outline" onClick={handleSubmitMessage}>
                                 Mandar mensagem para o cliente
                             </Button>
                         </div>
-                        <p>
-                            <span className="font-semibold">Endereço:</span> {order.userAddress}
-                        </p>
-                        <p>
-                            <span className="font-semibold">Data do pedido:</span> {formatters.date(order.createdAt)}
-                        </p>
+                        <div className="flex items-center gap-1">
+                            <p className="font-semibold">Endereço:</p>
+                            <p>{order.userAddress}</p>
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <p className="font-semibold">Data do pedido:</p>
+                            <p>{formatters.date(order.createdAt)}</p>
+                        </div>
                     </div>
 
                     {/* Lista de itens */}
@@ -91,7 +95,7 @@ const ViewOrderDialog = ({ open, onOpenChange, order }: ViewOrderDialogProps) =>
                                     <span className="font-medium">{item.product.name}</span>
                                     <span>
                                         {item.quantity.toString()}{" "}
-                                        {item.category === "KG_FEED" ? "kg" : "un"}
+                                        {item.category === "KG_FEED" ? "kg" : item.quantity === 1 ? "unidade" : "unidades"}
                                     </span>
                                 </li>
                             ))}
@@ -100,10 +104,10 @@ const ViewOrderDialog = ({ open, onOpenChange, order }: ViewOrderDialogProps) =>
 
                     {/* Valor total e status */}
                     <div className="flex flex-col gap-2 border-t border-gray-300 pt-4">
-                        <p className="flex items-center gap-1">
+                        <div className="flex items-center gap-1">
                             <p className="font-semibold">Valor total:</p>
                             {formatters.currency(order.totalAmount)}
-                        </p>
+                        </div>
                         <div className="flex items-center gap-2">
                             <p className="font-semibold">Status do pedido:</p>
                             {loading ? (
