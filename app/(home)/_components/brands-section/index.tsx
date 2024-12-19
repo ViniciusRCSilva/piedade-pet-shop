@@ -17,7 +17,7 @@ const BrandsSection = () => {
                 Nossas rações foram cuidadosamente selecionadas para atender a todas as necessidades dos nossos clientes,<br /> além de oferecermos uma variedade de marcas de qualidade para garantir a nutrição adequada e a saúde dos nossos pets
             </p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 items-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 items-center bg-white">
                 {AVAILABLE_IMAGES.map((image, index) => (
                     <div key={index} className="flex items-center justify-center border w-36 h-36 group">
                         <Image

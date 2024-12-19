@@ -1,4 +1,4 @@
-import { InstagramLogo, WhatsappLogo, MapPin } from "@phosphor-icons/react/dist/ssr";
+import { InstagramLogo, WhatsappLogo, MapPin, Clock } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,72 +8,86 @@ const ContactsSection = () => {
             <div className="flex flex-col lg:flex-row justify-between gap-10 w-full mx-auto">
                 {/* Left Column - Contact Info */}
                 <div className="flex flex-col w-full lg:w-1/2">
-                    <h1 className="mb-10 text-center text-3xl md:text-4xl font-bold text-white border-b border-white/50 pb-4 lg:text-left">Entre em contato!</h1>
+                    {/* ADD BORDER ON THE TEXT */}
+                    <h1 className="mb-4 text-center text-3xl md:text-4xl font-bold text-white lg:text-left">Entre em contato!</h1>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-                        {/* WhatsApp Card */}
-                        <div className="flex flex-col w-full lg:w-fit bg-white rounded-lg p-6 pr-12">
-                            <span className="flex items-center text-lg font-semibold mb-4">
-                                WHATSAPP
-                                <WhatsappLogo className="text-lime-500 ml-2 text-2xl" />
-                            </span>
+                    <div className="w-full h-[1px] bg-white/50 mb-6" />
 
-                            <div className="flex flex-col sm:flex-row items-center gap-4">
-                                <div className="w-20 h-20 shrink-0">
-                                    <Image
-                                        src="/logo_draw.svg"
-                                        alt="Piedade PetShop"
-                                        width={80}
-                                        height={80}
-                                        className="object-contain"
-                                    />
-                                </div>
-
-                                <div className="flex flex-col items-center sm:items-start w-full">
-                                    <span className="text-lg font-bold text-muted-foreground mb-3">(81) 99191-9853</span>
-                                    <Link
-                                        href="http://api.whatsapp.com/send?1=pt_BR&phone=5581991919853"
-                                        target="_blank"
-                                        className="font-raleway text-center w-full sm:w-48 text-white bg-gradient-to-r from-lime-500 to-lime-600 hover:opacity-90 transition-all rounded-md p-2"
-                                    >
-                                        ENTRAR EM CONTATO
-                                    </Link>
-                                </div>
-                            </div>
+                    <div className="flex flex-col">
+                        <div className="flex items-center gap-2 mb-2">
+                            <Clock size={24} className="text-white shrink-0" />
+                            <p className="text-xl text-white font-bold">
+                                Horários de funcionamento:
+                            </p>
                         </div>
 
-                        {/* Instagram Card */}
-                        <div className="flex flex-col w-full lg:w-fit bg-white rounded-lg p-6 pr-12">
-                            <span className="flex items-center text-lg font-semibold mb-4">
-                                INSTAGRAM
-                                <InstagramLogo className="text-[#E4405F] ml-2 text-2xl" />
-                            </span>
+                        <p className="text-lg text-white font-semibold mb-10">Segunda à Sábado - 08:30 a 18:30</p>
 
-                            <div className="flex flex-col sm:flex-row items-center gap-4">
-                                <div className="w-20 h-20 shrink-0">
-                                    <Image
-                                        src="/logo_draw.svg"
-                                        alt="Piedade PetShop"
-                                        width={80}
-                                        height={80}
-                                        className="object-contain"
-                                    />
-                                </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* WhatsApp Card */}
+                            <div className="flex flex-col w-full lg:w-fit bg-white rounded-lg p-6 pr-12">
+                                <span className="flex items-center text-lg mb-4">
+                                    <WhatsappLogo className="text-lime-500 mr-2 text-2xl" />
+                                    WHATSAPP
+                                </span>
 
-                                <div className="flex flex-col items-center sm:items-start w-full">
-                                    <span className="text-lg font-bold text-muted-foreground mb-3">piedadepetshop</span>
-                                    <Link
-                                        href="https://www.instagram.com/piedadepetshop/"
-                                        target="_blank"
-                                        className="font-raleway text-center w-full sm:w-48 text-white bg-gradient-to-r from-[#fd5949] to-[#d6249f] hover:opacity-90 transition-all rounded-md p-2"
-                                    >
-                                        SEGUIR
-                                    </Link>
+                                <div className="flex flex-col sm:flex-row items-center gap-4">
+                                    <div className="w-20 h-20 shrink-0">
+                                        <Image
+                                            src="/logo_draw.svg"
+                                            alt="Piedade PetShop"
+                                            width={80}
+                                            height={80}
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                    <div className="flex flex-col items-center sm:items-start w-full">
+                                        <span className="text-lg font-bold text-muted-foreground mb-3">(81) 99191-9853</span>
+                                        <Link
+                                            href="http://api.whatsapp.com/send?1=pt_BR&phone=5581991919853"
+                                            target="_blank"
+                                            className="font-raleway text-center w-full sm:w-48 text-white bg-gradient-to-r from-lime-500 to-lime-600 hover:opacity-90 transition-all rounded-md p-2"
+                                        >
+                                            ENTRAR EM CONTATO
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                            {/* Instagram Card */}
+                            <div className="flex flex-col w-full lg:w-fit bg-white rounded-lg p-6 pr-12">
+                                <span className="flex items-center text-lg mb-4">
+                                    <InstagramLogo className="text-[#E4405F] mr-2 text-2xl" />
+                                    INSTAGRAM
+                                </span>
+
+                                <div className="flex flex-col sm:flex-row items-center gap-4">
+                                    <div className="w-20 h-20 shrink-0">
+                                        <Image
+                                            src="/logo_draw.svg"
+                                            alt="Piedade PetShop"
+                                            width={80}
+                                            height={80}
+                                            className="object-contain"
+                                        />
+                                    </div>
+
+                                    <div className="flex flex-col items-center sm:items-start w-full">
+                                        <span className="text-lg font-bold text-muted-foreground mb-3">piedadepetshop</span>
+                                        <Link
+                                            href="https://www.instagram.com/piedadepetshop/"
+                                            target="_blank"
+                                            className="font-raleway text-center w-full sm:w-48 text-white bg-gradient-to-r from-[#fd5949] to-[#d6249f] hover:opacity-90 transition-all rounded-md p-2"
+                                        >
+                                            SEGUIR
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
                 </div>
 
                 {/* Right Column - Map */}

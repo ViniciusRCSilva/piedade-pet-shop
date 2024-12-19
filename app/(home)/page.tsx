@@ -43,8 +43,11 @@ const Home = async () => {
         </section>
 
         {/* Contacts Section */}
-        <section className="flex h-fit flex-col bg-contacts_section bg-cover bg-no-repeat px-6 md:px-10 py-16 md:py-20">
-          <ContactsSection />
+        <section className="flex h-fit flex-col bg-purple relative px-6 md:px-10 py-16 md:py-20 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/paw-pattern.svg')] opacity-10 bg-repeat" style={{ backgroundSize: '300px 300px' }} />
+          <div className="relative z-10">
+            <ContactsSection />
+          </div>
         </section>
 
         {/* Footer Section */}
