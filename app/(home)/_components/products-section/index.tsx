@@ -1,8 +1,9 @@
 import { Button } from "@/app/_components/ui/button";
-import { Bone, Pill } from "@phosphor-icons/react/dist/ssr";
+import { Bone, Pill, Storefront } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import MiniCard from "../mini-card";
+import { ProductCategory } from "@prisma/client";
 
 const ProductsSection = () => {
     return (
@@ -16,31 +17,38 @@ const ProductsSection = () => {
                 <MiniCard
                     icon={<Image src="/icons/racao.png" alt="Rações" width={32} height={32} draggable={false} />}
                     content="Rações"
+                    category={ProductCategory.KG_FEED}
                 />
                 <MiniCard
                     icon={<Bone size={32} />}
                     content="Petiscos"
+                    category={ProductCategory.SNACK}
                 />
                 <MiniCard
                     icon={<Image src="/icons/acessorios.png" alt="Acessórios" width={32} height={32} draggable={false} />}
                     content="Acessórios"
+                    category={ProductCategory.ACCESSORY}
                 />
                 <MiniCard
                     icon={<Image src="/icons/brinquedos.png" alt="Brinquedos" width={32} height={32} draggable={false} />}
                     content="Brinquedos"
+                    category={ProductCategory.TOY}
                 />
                 <MiniCard
                     icon={<Image src="/icons/higiene.png" alt="Higiene" width={32} height={32} draggable={false} />}
                     content="Higiene"
+                    category={ProductCategory.HYGIENE}
                 />
                 <MiniCard
                     icon={<Pill size={32} />}
                     content="Medicamentos"
+                    category={ProductCategory.MEDICINE}
                 />
             </div>
 
             <Button variant="link" asChild>
                 <Link href="/produtos" className="flex items-center gap-2 text-xl text-primary">
+                    <Storefront size={32} />
                     Ver todos os produtos
                 </Link>
             </Button>

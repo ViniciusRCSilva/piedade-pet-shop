@@ -11,15 +11,19 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Button } from "@/app/_components/ui/button";
 import { MagnifyingGlass, Sliders, Trash } from "@phosphor-icons/react/dist/ssr";
 import { useAuth } from "@clerk/nextjs";
+import { useSearchParams } from "next/navigation";
 
 interface ProductListProps {
     initialProducts: SerializedProduct[];
 }
 
 export default function ProductList({ initialProducts }: ProductListProps) {
+    const searchParams = useSearchParams();
     const [filteredProducts, setFilteredProducts] = useState(initialProducts);
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState<string>("all");
+    const [selectedCategory, setSelectedCategory] = useState<'all' | ProductCategory>(
+        (searchParams.get("category") as ProductCategory) || "all"
+    );
     const [selectedPriceRange, setSelectedPriceRange] = useState<string>("all");
     const { isSignedIn } = useAuth();
 
@@ -116,7 +120,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
                                 {/* Category Filter */}
                                 <div className="space-y-2">
                                     <h3 className="font-semibold text-muted-foreground">Categorias</h3>
-                                    <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                                    <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as ProductCategory | "all")}>
                                         <SelectTrigger>
                                             <SelectValue placeholder="Filtrar por categoria" />
                                         </SelectTrigger>
@@ -166,9 +170,9 @@ export default function ProductList({ initialProducts }: ProductListProps) {
                     {/* Reset Filters Button - Desktop */}
                     {hasActiveFilters && (
                         <Button
-                            variant="destructive"
+                            variant="link"
                             onClick={resetFilters}
-                            className="w-full"
+                            className="w-fit text-red-500 p-0 items-center justify-start"
                         >
                             <Trash className="mr-2 h-4 w-4" />
                             Remover Filtros
@@ -191,7 +195,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
                     {/* Category Filter */}
                     <div className="space-y-2">
                         <h3 className="font-semibold text-muted-foreground">Categorias</h3>
-                        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                        <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as ProductCategory | "all")}>
                             <SelectTrigger>
                                 <SelectValue placeholder="Filtrar por categoria" />
                             </SelectTrigger>
@@ -235,6 +239,12 @@ export default function ProductList({ initialProducts }: ProductListProps) {
 
                 {/* Products Grid */}
                 <div className="flex-1">
+                    <h1 className="mb-6 pb-2 text-2xl font-bold text-muted-foreground border-b">
+                        {selectedCategory === "all"
+                            ? "Todos os produtos"
+                            : formatters.category(selectedCategory)
+                        }
+                    </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                         {filteredProducts.map((product) => (
                             <ProductCard
