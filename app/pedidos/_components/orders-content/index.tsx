@@ -28,16 +28,14 @@ const OrdersContent = ({ orders, totalPages }: OrdersContentProps) => {
     return (
         <>
             {orders.length === 0 ? (
-                <div className="flex w-full h-full items-center justify-center text-muted-foreground">
-                    <div className="flex flex-col items-center justify-center border p-6 rounded-md">
-                        <Scroll size={40} className="mb-4 opacity-50" />
-                        <p className="text-center">Você ainda não fez nenhum pedido.</p>
-                        <Button asChild variant="link" className="text-primary">
-                            <Link href="/produtos">
-                                <p className="text-center text-sm">Que tal começar a comprar agora?</p>
-                            </Link>
-                        </Button>
-                    </div>
+                <div className="flex flex-col items-center justify-center h-[400px] text-muted-foreground">
+                    <Scroll size={60} className="mb-4 opacity-50" />
+                    <p className="text-center">Você ainda não fez nenhum pedido.</p>
+                    <Button asChild variant="link" className="text-primary">
+                        <Link href="/produtos">
+                            <p className="text-center text-sm">Que tal começar a comprar agora?</p>
+                        </Link>
+                    </Button>
                 </div>
             ) : (
                 <div className="flex flex-col gap-4">

@@ -47,7 +47,7 @@ export default async function FavoriteProductsPage() {
     }));
 
     return (
-        <div className="flex flex-col min-h-screen h-full justify-between pt-[100px]">
+        <div className="flex flex-col min-h-screen pt-[100px]">
             <div className="fixed bottom-0 right-0 m-5 z-40 lg:m-10">
                 <Cart />
             </div>
@@ -68,21 +68,23 @@ export default async function FavoriteProductsPage() {
                 <div className="w-full h-[1px] bg-purple/20" />
             </div>
 
-            {products.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-[400px] text-muted-foreground">
-                    <Heart size={64} />
-                    <p className="text-xl mt-4">Você ainda não tem produtos favoritos</p>
+            <div className="flex-1 w-full h-full pt-10 px-6 lg:px-20">
+                <div className="flex items-center gap-3">
+                    <Heart size={28} className="text-primary" />
+                    <h1 className="font-bold text-2xl text-muted-foreground">Produtos Favoritos</h1>
                 </div>
-            ) : (
-                <div className="flex-1 w-full h-full pt-10 px-6 mb-10 lg:px-20">
-                    <div className="flex items-center gap-3 mb-10">
-                        <Heart size={28} className="text-primary" />
-                        <h1 className="font-bold text-2xl text-muted-foreground">Produtos Favoritos</h1>
-                    </div>
 
-                    <ProductsList initialProducts={products} />
-                </div>
-            )}
+                {products.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center h-[400px] text-muted-foreground">
+                        <Heart size={64} />
+                        <p className="text-xl mt-4">Você ainda não tem produtos favoritos</p>
+                    </div>
+                ) : (
+                    <div className="flex-1 w-full h-full pt-10 mb-10">
+                        <ProductsList initialProducts={products} />
+                    </div>
+                )}
+            </div>
             <Footer />
         </div>
     );

@@ -23,7 +23,7 @@ const NavbarContent = ({ userdb, isAdmin }: NavbarContentProps) => {
         <>
             {showNavBar && (
                 <nav className="fixed w-full z-50">
-                    <div className="flex w-full items-center justify-between border-b border-muted bg-white/90 px-6 py-4 backdrop-blur-md">
+                    <div className="flex w-full items-center justify-between border-b border-muted bg-white/90 px-6 lg:px-20 py-4 backdrop-blur-md">
                         {/* Logo */}
                         <Link className="flex items-center gap-2" href="/">
                             <Image src="/logo_draw.svg" alt="Piedade Pet Shop" width={50} height={50} draggable={false} quality={80} />
