@@ -8,10 +8,13 @@ import { ProductCategory } from "@prisma/client";
 const ProductsSection = () => {
     return (
         <>
-            <h1 className="mb-2 text-2xl lg:text-4xl font-bold text-purple">Nossos Produtos</h1>
-            <div className="h-1 w-20 bg-purple rounded-full mb-6" />
+            <h1 className="mb-2 text-2xl lg:text-4xl font-bold text-muted-foreground">Nossos Produtos</h1>
+            <div className="h-1 w-20 bg-muted-foreground rounded-full mb-6" />
 
-            <p className="mb-10 text-center text-purple">Nossos produtos são cuidadosamente selecionados para atender a todas as necessidades dos nossos clientes.</p>
+            <p className="mb-10 text-center text-muted-foreground">
+                Possuímos uma vasta variedade de produtos para atender a todas as necessidades dos nossos clientes.<br />
+                Confira abaixo uma seleção de alguns de nossos produtos:
+            </p>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:flex items-center gap-6 mb-10 select-none">
                 <MiniCard

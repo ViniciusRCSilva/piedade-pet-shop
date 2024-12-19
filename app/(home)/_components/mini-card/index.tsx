@@ -28,7 +28,7 @@ const MiniCard = ({ icon, content, category }: MiniCardProps) => {
                     </div>
 
                     {/* Text with hover effect */}
-                    <p className="text-center font-medium text-muted-foreground duration-300">
+                    <p className="text-center font-medium text-muted-foreground duration-300 transition-colors group-hover:text-purple">
                         {content}
                     </p>
                 </div>
