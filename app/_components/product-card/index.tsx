@@ -95,9 +95,9 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
     }, [availableQuantity]);
 
     return (
-        <Card className={`relative flex flex-col h-full w-full bg-white ${disabled ? "opacity-50" : ""}`}>
+        <Card className={`relative flex flex-col h-full w-full bg-white group hover:border-purple transition-colors ${disabled ? "opacity-50" : ""}`}>
             {isSignedIn ? (
-                <FavoriteButton productId={id} className="absolute top-5 right-6" />
+                <FavoriteButton productId={id} className="absolute top-5 right-6 transition-opacity xl:opacity-0 xl:group-hover:opacity-100" />
             ) : null}
             <CardHeader className="flex-grow group">
                 <div className="flex justify-between items-start">

@@ -112,7 +112,10 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
                             <div className="w-full h-[1px] bg-muted" />
 
-                            <p className="text-sm text-muted-foreground">{product.description}</p>
+                            <div className="flex flex-col gap-2">
+                                <p className="text-muted-foreground font-semibold">Informações:</p>
+                                <p className="text-sm text-muted-foreground">{product.description}</p>
+                            </div>
 
                             <div className="text-3xl font-bold text-primary">
                                 <MoneyFormat value={product.value} />
