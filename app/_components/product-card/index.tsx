@@ -103,13 +103,13 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
                 <div className="flex justify-between items-start">
                     <Link href={`/produto/${id}`} className="flex-1 group">
                         <div className="flex w-full items-center justify-center mb-2">
-                            <div className="flex w-[250px] h-[250px] items-center justify-center rounded-lg border">
+                            <div className="flex w-[250px] h-[250px] items-center justify-center">
                                 <Image
                                     src={image}
                                     alt={name}
                                     className="object-cover"
-                                    width={150}
-                                    height={150}
+                                    width={200}
+                                    height={200}
                                 />
                             </div>
                         </div>
@@ -176,7 +176,7 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
                                         className="rounded-full"
                                         disabled={disabled}
                                     >
-                                        <Plus />
+                                        <Plus className="h-4 w-4" />
                                     </Button>
                                 </TooltipTrigger>
                                 <TooltipContent>
@@ -190,7 +190,7 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
                                 <TooltipTrigger asChild>
                                     <SignInButton signUpFallbackRedirectUrl={"/"} mode="modal">
                                         <Button variant="outline" size="icon">
-                                            <SignIn className="mr-2 h-4 w-4" />
+                                            <SignIn className="h-4 w-4" />
                                         </Button>
                                     </SignInButton>
                                 </TooltipTrigger>
