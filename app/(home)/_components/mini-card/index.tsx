@@ -15,7 +15,7 @@ const MiniCard = ({ icon, content, category }: MiniCardProps) => {
     return (
         <Link href={`/produtos?category=${category}`}>
             <Card
-                className="group relative overflow-hidden w-36 h-36 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-purple/50"
+                className="group relative overflow-hidden w-36 h-36 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-purple"
             >
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
@@ -28,7 +28,7 @@ const MiniCard = ({ icon, content, category }: MiniCardProps) => {
                     </div>
 
                     {/* Text with hover effect */}
-                    <p className="text-center font-medium text-muted-foreground duration-300 transition-colors group-hover:text-purple">
+                    <p className="text-center font-medium text-muted-foreground duration-300">
                         {content}
                     </p>
                 </div>
