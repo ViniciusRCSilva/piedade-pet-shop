@@ -1,10 +1,20 @@
 import Content from "./content";
 import { Accordion } from "@/app/_components/ui/accordion";
+import Image from "next/image";
 
 const AboutUsSection = () => {
     return (
         <div className="w-[80%] flex flex-col items-center lg:items-start">
-            <h1 className="text-2xl font-bold text-purple mb-4">Piedade PetShop</h1>
+            <div className="flex items-center gap-2 mb-4">
+                <Image
+                    src="/logo_draw.svg"
+                    alt="Piedade PetShop"
+                    width={50}
+                    height={50}
+                    draggable={false}
+                />
+                <h1 className="text-2xl font-bold text-purple">Piedade PetShop</h1>
+            </div>
             <p className="mb-2 text-muted-foreground text-center text-sm lg:text-base lg:text-left">
                 A relação entre tutores e seus animais de estimação é verdadeiramente transformadora,
                 repleta de conexão emocional. Para tornar esse vínculo ainda mais especial,
