@@ -1,7 +1,6 @@
 import Cart from "../_components/cart";
 import Footer from "../_components/footer";
 import { db } from "../_lib/prisma";
-import HeroSectionCarouselProducts from "./_components/hero-section";
 import ProductList from "./_components/products-list";
 
 import {
@@ -28,15 +27,10 @@ const Products = async () => {
 
     return (
         <>
-            <main className="flex flex-col min-h-screen pt-[72px]">
+            <main className="flex flex-col min-h-screen pt-[100px]">
                 <div className="fixed bottom-0 right-0 m-5 z-40 lg:m-10">
                     <Cart />
                 </div>
-
-                {/* Hero Section */}
-                <section className="w-full h-fit">
-                    <HeroSectionCarouselProducts />
-                </section>
 
                 <div className="flex flex-col sticky top-20 px-6 pt-10 sm:-mt-16 mb-10 gap-8 bg-white lg:px-20 z-10">
                     <Breadcrumb>
@@ -54,7 +48,7 @@ const Products = async () => {
                     <div className="w-full h-[1px] bg-purple/20" />
                 </div>
 
-                <section className="flex-1 h-fit flex items-center px-6 mb-10 lg:px-20">
+                <section className="flex-1 h-fit flex items-center pt-10 px-6 mb-10 lg:px-20">
                     <ProductList initialProducts={serializedProducts} />
                 </section>
 

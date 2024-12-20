@@ -113,7 +113,7 @@ const ProductCard = ({ id, category, name, description, quantity: availableQuant
                                 />
                             </div>
                         </div>
-                        <CardTitle className="text-lg text-muted-foreground font-normal group-hover:underline">{name}</CardTitle>
+                        <CardTitle className="text-base text-muted-foreground font-normal group-hover:underline">{name}</CardTitle>
                         <CardDescription className="text-2xl font-bold text-primary">
                             <MoneyFormat value={value} />
                             {category === "KG_FEED" && "/KG"}
