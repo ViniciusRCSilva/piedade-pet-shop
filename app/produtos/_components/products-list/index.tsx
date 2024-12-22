@@ -25,6 +25,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
         (searchParams.get("category") as ProductCategory) || "all"
     );
     const [selectedPriceRange, setSelectedPriceRange] = useState<string>("all");
+    const [displayCount, setDisplayCount] = useState(10);
     const { isSignedIn } = useAuth();
 
     const resetFilters = () => {
@@ -246,13 +247,24 @@ export default function ProductList({ initialProducts }: ProductListProps) {
                         }
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                        {filteredProducts.map((product) => (
+                        {filteredProducts.slice(0, displayCount).map((product) => (
                             <ProductCard
                                 key={product.id}
                                 {...product}
                             />
                         ))}
                     </div>
+                    {displayCount < filteredProducts.length && (
+                        <div className="mt-8 flex justify-center">
+                            <Button
+                                variant="outline"
+                                onClick={() => setDisplayCount(prev => prev + 10)}
+                                className="w-full max-w-xs"
+                            >
+                                Carregar mais produtos
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
