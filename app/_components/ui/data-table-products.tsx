@@ -42,6 +42,7 @@ const categories = [
   { value: "TOY", label: "Brinquedos" },
   { value: "MEDICINE", label: "Medicamentos" },
   { value: "HYGIENE", label: "Higiene" },
+  { value: "PLAGUE_CONTROL", label: "Controle de pragas" },
 ];
 
 export function DataTable<TData, TValue>({

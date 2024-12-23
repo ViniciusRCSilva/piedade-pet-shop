@@ -15,6 +15,7 @@ enum ProductCategory {
     TOY // Brinquedo
     MEDICINE // Medicamento
     HYGIENE // Higiene
+    PLAGUE_CONTROL // Controle de pragas
 }
 
 enum OrderStatus {

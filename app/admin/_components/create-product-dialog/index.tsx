@@ -36,7 +36,7 @@ import Image from "next/image"
 const formSchema = z.object({
     name: z.string().min(1, "Nome é obrigatório"),
     description: z.string().min(1, "Descrição é obrigatória"),
-    category: z.enum(["BAG_FEED", "KG_FEED", "SNACK", "ACCESSORY", "TOY", "MEDICINE", "HYGIENE"], {
+    category: z.enum(["BAG_FEED", "KG_FEED", "SNACK", "ACCESSORY", "TOY", "MEDICINE", "HYGIENE", "PLAGUE_CONTROL"], {
         required_error: "Categoria é obrigatória",
     }),
     value: z.string().min(1, "Valor é obrigatório"),

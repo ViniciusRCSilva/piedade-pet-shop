@@ -8,6 +8,7 @@ export const categoryLabels: Record<ProductCategory, string> = {
     TOY: "Brinquedo",
     MEDICINE: "Medicamento",
     HYGIENE: "Higiene",
+    PLAGUE_CONTROL: "Controle de pragas",
 }
 
 export const statusLabels: Record<OrderStatus, string> = {
@@ -72,11 +73,11 @@ export const AVAILABLE_IMAGES = [
 
 export const priceRanges = [
     { id: "all", label: "Todos os preços", min: 0, max: Infinity },
-    { id: "0-25", label: "R$ 0,00 - R$ 25,00", min: 0, max: 25 },
-    { id: "25-50", label: "R$ 25,00 - R$ 50,00", min: 25, max: 50 },
-    { id: "50-100", label: "R$ 50,00 - R$ 100,00", min: 50, max: 100 },
-    { id: "100-200", label: "R$ 100,00 - R$ 200,00", min: 100, max: 200 },
-    { id: "200+", label: "R$ 200,00+", min: 200, max: Infinity },
+    { id: "0-25", label: "R$ 0,00 - R$ 10,00", min: 0, max: 10 },
+    { id: "25-50", label: "R$ 10,00 - R$ 15,00", min: 10, max: 15 },
+    { id: "50-100", label: "R$ 15,00 - R$ 20,00", min: 15, max: 20 },
+    { id: "100-200", label: "R$ 20,00 - R$ 30,00", min: 20, max: 30 },
+    { id: "200+", label: "R$ 100,00+", min: 100, max: Infinity },
 ];
 
 export const formatters = {
