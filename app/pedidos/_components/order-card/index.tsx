@@ -6,11 +6,28 @@ import AddToCart from "../button-add-to-cart";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/app/_components/ui/button";
+import CancelOrder from "../button-cancel-order";
 
 const OrderCard = ({ orders }: { orders: SerializedOrder[] }) => {
+    // Ensure all Decimal values are converted to numbers
+    const serializedOrders = orders.map(order => ({
+        ...order,
+        totalAmount: Number(order.totalAmount),
+        items: order.items.map(item => ({
+            ...item,
+            value: Number(item.value),
+            quantity: Number(item.quantity),
+            product: {
+                ...item.product,
+                value: Number(item.product.value),
+                quantity: Number(item.product.quantity)
+            }
+        }))
+    }));
+
     return (
         <div className="flex flex-col gap-3 p-6">
-            {orders.map((order) => (
+            {serializedOrders.map((order) => (
                 <Card key={order.id} className="flex flex-col bg-white px-5 py-4 gap-4">
                     <p className="block font-bold text-muted-foreground lg:hidden">Pedido #{order.id}</p>
                     <div className="flex items-start justify-between md:items-center">
@@ -72,12 +89,15 @@ const OrderCard = ({ orders }: { orders: SerializedOrder[] }) => {
 
                     <div className="flex items-center justify-between border-t pt-4">
                         <div className="flex items-center gap-2">
+                            {order.status === "PENDING" && (
+                                <CancelOrder order={order} />
+                            )}
                             {order.status === "CONCLUDED" && (
                                 <AddToCart order={order} />
                             )}
                         </div>
                         <p className="text-muted-foreground">
-                            Valor total:<span className="text-lg ml-2 font-bold text-primary">{formatters.currency(order.totalAmount)}</span>
+                            Valor total:<span className="text-lg ml-2 font-bold text-primary">{formatters.currency(Number(order.totalAmount))}</span>
                         </p>
                     </div>
                 </Card>
