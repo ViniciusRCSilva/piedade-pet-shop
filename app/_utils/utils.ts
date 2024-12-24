@@ -1,4 +1,4 @@
-import { OrderStatus, Product, ProductCategory } from "@prisma/client"
+import { OrderStatus, Product, ProductAnimalCategory, ProductCategory } from "@prisma/client"
 
 export const categoryLabels: Record<ProductCategory, string> = {
     BAG_FEED: "Ração em Saca",
@@ -9,6 +9,13 @@ export const categoryLabels: Record<ProductCategory, string> = {
     MEDICINE: "Medicamento",
     HYGIENE: "Higiene",
     PLAGUE_CONTROL: "Controle de pragas",
+}
+
+export const animalCategories = {
+    DOG: "Cachorro",
+    CAT: "Gato",
+    DOG_AND_CAT: "Cachorro e Gato",
+    OTHER: "Outro",
 }
 
 export const statusLabels: Record<OrderStatus, string> = {
@@ -82,6 +89,7 @@ export const priceRanges = [
 
 export const formatters = {
     category: (category: ProductCategory) => categoryLabels[category],
+    getAnimalCategory: (animal: ProductAnimalCategory) => animalCategories[animal],
     currency: (value: number) => currencyFormatter.format(value),
     date: (date: Date) => dateFormatter.format(date),
     status: (status: OrderStatus) => statusLabels[status],

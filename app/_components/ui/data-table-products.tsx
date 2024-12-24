@@ -45,6 +45,14 @@ const categories = [
   { value: "PLAGUE_CONTROL", label: "Controle de pragas" },
 ];
 
+const animals = [
+  { value: "ALL", label: "Todos os animais" },
+  { value: "DOG", label: "Cachorro" },
+  { value: "CAT", label: "Gato" },
+  { value: "DOG_AND_CAT", label: "Cachorro e Gato" },
+  { value: "OTHER", label: "Outro" },
+];
+
 export function DataTable<TData, TValue>({
   columns,
   data,
@@ -52,6 +60,7 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [categoryFilter, setCategoryFilter] = useState("ALL");
+  const [animalFilter, setAnimalFilter] = useState("ALL");
 
   const table = useReactTable({
     data,
@@ -73,6 +82,15 @@ export function DataTable<TData, TValue>({
       table.getColumn("category")?.setFilterValue("");
     } else {
       table.getColumn("category")?.setFilterValue(value);
+    }
+  };
+
+  const handleAnimalChange = (value: string) => {
+    setAnimalFilter(value);
+    if (value === "ALL") {
+      table.getColumn("animal")?.setFilterValue("");
+    } else {
+      table.getColumn("animal")?.setFilterValue(value);
     }
   };
 
@@ -98,6 +116,21 @@ export function DataTable<TData, TValue>({
             {categories.map((category) => (
               <SelectItem key={category.value} value={category.value}>
                 {category.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Select
+          value={animalFilter}
+          onValueChange={handleAnimalChange}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Selecione o animal" />
+          </SelectTrigger>
+          <SelectContent>
+            {animals.map((animal) => (
+              <SelectItem key={animal.value} value={animal.value}>
+                {animal.label}
               </SelectItem>
             ))}
           </SelectContent>

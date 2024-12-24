@@ -94,18 +94,29 @@ export default async function ProductPage(props: ProductPageProps) {
               <h1 className="text-lg text-muted-foreground mb-6">Veja também:</h1>
               <Carousel className="w-full lg:px-20">
                 <CarouselContent className="-ml-1 select-none">
-                  {serializedProducts
-                    .filter((p) => p.id !== params.id)
-                    .filter((p) => p.quantity > 0)
-                    .filter((p) => p.category === serializedProduct.category)
-                    .slice(0, 10)
-                    .map((product) => (
-                      <CarouselItem key={product.id} className="pl-1 basis-full sm:basis-1/2 xl:basis-1/4">
-                        <div className="p-1 h-full flex justify-center items-center">
-                          <ProductCard {...product} />
-                        </div>
-                      </CarouselItem>
-                    ))}
+                  {(() => {
+                    const baseFiltered = serializedProducts
+                      .filter((p) => p.id !== params.id)
+                      .filter((p) => p.quantity > 0)
+                      .filter((p) => p.category === serializedProduct.category);
+
+                    const withAnimalFilter = baseFiltered
+                      .filter((p) => p.animal === serializedProduct.animal);
+
+                    const finalProducts = withAnimalFilter.length > 5
+                      ? withAnimalFilter
+                      : baseFiltered;
+
+                    return finalProducts
+                      .slice(0, 10)
+                      .map((product) => (
+                        <CarouselItem key={product.id} className="pl-1 basis-full sm:basis-1/2 xl:basis-1/4">
+                          <div className="p-1 h-full flex justify-center items-center">
+                            <ProductCard {...product} />
+                          </div>
+                        </CarouselItem>
+                      ));
+                  })()}
                 </CarouselContent>
                 <CarouselPrevious className="absolute left-1 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white w-8 h-8 md:w-12 md:h-12" />
                 <CarouselNext className="absolute right-1 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white w-8 h-8 md:w-12 md:h-12" />

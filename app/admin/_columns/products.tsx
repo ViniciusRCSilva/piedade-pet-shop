@@ -32,6 +32,27 @@ export const columns: ColumnDef<SerializedProduct>[] = [
                 </Button>
             )
         },
+        cell: ({ row: { original: product } }) => (
+            <div className="w-80 truncate">{product.name}</div>
+        ),
+    },
+    {
+        accessorKey: "animal",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    className="pl-0 hover:bg-transparent"
+                >
+                    Animal
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            )
+        },
+        cell: ({ row: { original: product } }) => (
+            <div className="w-24 truncate">{formatters.getAnimalCategory(product.animal)}</div>
+        ),
     },
     {
         accessorKey: "description",

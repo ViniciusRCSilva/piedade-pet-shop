@@ -3,11 +3,36 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import ProductCard from "@/app/_components/product-card";
 
 const ProductsSection = async () => {
+    // First, get the total count of eligible products
+    const totalProducts = await db.product.count({
+        where: {
+            animal: {
+                in: ["DOG", "CAT", "DOG_AND_CAT"]
+            },
+            category: {
+                in: ["BAG_FEED", "KG_FEED", "SNACK", "ACCESSORY", "TOY", "HYGIENE"]
+            },
+            quantity: {
+                gt: 0
+            }
+        }
+    });
+
+    // Get random products using skip and take
     const products = await db.product.findMany({
-        orderBy: {
-            createdAt: "desc"
+        where: {
+            animal: {
+                in: ["DOG", "CAT", "DOG_AND_CAT"]
+            },
+            category: {
+                in: ["BAG_FEED", "KG_FEED", "SNACK", "ACCESSORY", "TOY", "HYGIENE"]
+            },
+            quantity: {
+                gt: 0
+            }
         },
-        take: 6
+        take: 6,
+        skip: Math.floor(Math.random() * Math.max(0, totalProducts - 6))
     });
 
     const serializedProducts = products.map(product => ({

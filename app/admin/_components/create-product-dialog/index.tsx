@@ -27,7 +27,7 @@ import {
 } from "../../../_components/ui/form"
 import { toast } from "sonner"
 import { createProduct } from "../../../_actions/product"
-import { ProductCategory } from "@prisma/client"
+import { ProductCategory, ProductAnimalCategory } from "@prisma/client"
 import { formatters } from "@/app/_utils/utils"
 import { LoaderCircleIcon } from "lucide-react"
 import { UploadDropzone } from "@/app/_utils/uploadthing"
@@ -38,6 +38,9 @@ const formSchema = z.object({
     description: z.string().min(1, "Descrição é obrigatória"),
     category: z.enum(["BAG_FEED", "KG_FEED", "SNACK", "ACCESSORY", "TOY", "MEDICINE", "HYGIENE", "PLAGUE_CONTROL"], {
         required_error: "Categoria é obrigatória",
+    }),
+    animal: z.enum(["DOG", "CAT", "DOG_AND_CAT", "OTHER"], {
+        required_error: "Animal é obrigatório",
     }),
     value: z.string().min(1, "Valor é obrigatório"),
     quantity: z.string().min(1, "Quantidade é obrigatória"),
@@ -77,6 +80,7 @@ export default function CreateProductDialog({
                 name: values.name,
                 description: values.description,
                 category: values.category,
+                animal: values.animal,
                 value: Number(values.value),
                 quantity: Number(values.quantity),
                 image: values.image || "",
@@ -129,6 +133,35 @@ export default function CreateProductDialog({
                                             {Object.values(ProductCategory).map((category) => (
                                                 <SelectItem key={category} value={category}>
                                                     {formatters.category(category)}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="category"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Animal</FormLabel>
+                                    <Select
+                                        disabled={loading}
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                    >
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Selecione um animal" />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            {Object.values(ProductAnimalCategory).map((animal) => (
+                                                <SelectItem key={animal} value={animal}>
+                                                    {formatters.getAnimalCategory(animal)}
                                                 </SelectItem>
                                             ))}
                                         </SelectContent>

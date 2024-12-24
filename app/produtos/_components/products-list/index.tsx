@@ -1,6 +1,6 @@
 "use client"
 
-import { ProductCategory } from "@prisma/client";
+import { ProductAnimalCategory, ProductCategory } from "@prisma/client";
 import { useState, useEffect } from "react";
 import { Input } from "@/app/_components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/_components/ui/select";
@@ -24,6 +24,9 @@ export default function ProductList({ initialProducts }: ProductListProps) {
     const [selectedCategory, setSelectedCategory] = useState<'all' | ProductCategory>(
         (searchParams.get("category") as ProductCategory) || "all"
     );
+    const [selectedAnimal, setSelectedAnimal] = useState<'all' | ProductAnimalCategory>(
+        (searchParams.get("animal") as ProductAnimalCategory) || "all"
+    );
     const [selectedPriceRange, setSelectedPriceRange] = useState<string>("all");
     const [displayCount, setDisplayCount] = useState(10);
     const { isSignedIn } = useAuth();
@@ -31,10 +34,11 @@ export default function ProductList({ initialProducts }: ProductListProps) {
     const resetFilters = () => {
         setSearchTerm("");
         setSelectedCategory("all");
+        setSelectedAnimal("all");
         setSelectedPriceRange("all");
     };
 
-    const hasActiveFilters = searchTerm !== "" || selectedCategory !== "all" || selectedPriceRange !== "all";
+    const hasActiveFilters = searchTerm !== "" || selectedCategory !== "all" || selectedAnimal !== "all" || selectedPriceRange !== "all";
 
     const getProductCountInPriceRange = (min: number, max: number) => {
         return initialProducts.filter(product => {
@@ -59,6 +63,11 @@ export default function ProductList({ initialProducts }: ProductListProps) {
             filtered = filtered.filter(product => product.category === selectedCategory);
         }
 
+        // Apply animal filter
+        if (selectedAnimal !== "all") {
+            filtered = filtered.filter(product => product.animal === selectedAnimal);
+        }
+
         // Apply price range filter
         if (selectedPriceRange !== "all") {
             const range = priceRanges.find(r => r.id === selectedPriceRange);
@@ -71,7 +80,7 @@ export default function ProductList({ initialProducts }: ProductListProps) {
         }
 
         setFilteredProducts(filtered);
-    }, [searchTerm, selectedCategory, selectedPriceRange, initialProducts, isSignedIn]);
+    }, [searchTerm, selectedCategory, selectedAnimal, selectedPriceRange, initialProducts, isSignedIn]);
 
     return (
         <div className="w-full">
@@ -130,6 +139,24 @@ export default function ProductList({ initialProducts }: ProductListProps) {
                                             {Object.values(ProductCategory).map((category) => (
                                                 <SelectItem key={category} value={category}>
                                                     {formatters.category(category)}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                                {/* Animal Filter */}
+                                <div className="space-y-2">
+                                    <h3 className="font-semibold text-muted-foreground">Animais</h3>
+                                    <Select value={selectedAnimal} onValueChange={(value) => setSelectedAnimal(value as ProductAnimalCategory | "all")}>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Filtrar por animal" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="all">Todas os animais</SelectItem>
+                                            {Object.values(ProductAnimalCategory).map((animal) => (
+                                                <SelectItem key={animal} value={animal}>
+                                                    {formatters.getAnimalCategory(animal)}
                                                 </SelectItem>
                                             ))}
                                         </SelectContent>
@@ -211,6 +238,24 @@ export default function ProductList({ initialProducts }: ProductListProps) {
                         </Select>
                     </div>
 
+                    {/* Animal Filter */}
+                    <div className="space-y-2">
+                        <h3 className="font-semibold text-muted-foreground">Animais</h3>
+                        <Select value={selectedAnimal} onValueChange={(value) => setSelectedAnimal(value as ProductAnimalCategory | "all")}>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Filtrar por animal" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">Todas os animais</SelectItem>
+                                {Object.values(ProductAnimalCategory).map((animal) => (
+                                    <SelectItem key={animal} value={animal}>
+                                        {formatters.getAnimalCategory(animal)}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+
                     {/* Price Range Radio Group */}
                     <div className="space-y-2">
                         <h3 className="font-semibold text-muted-foreground">Faixa de Preço</h3>
@@ -244,6 +289,10 @@ export default function ProductList({ initialProducts }: ProductListProps) {
                         {selectedCategory === "all"
                             ? "Todos os produtos"
                             : formatters.category(selectedCategory)
+                        }
+                        {selectedAnimal === "all" || selectedAnimal === "OTHER"
+                            ? ""
+                            : ` para ${formatters.getAnimalCategory(selectedAnimal)}`
                         }
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">

@@ -2,12 +2,13 @@
 
 import { revalidatePath } from "next/cache"
 import { db } from "../_lib/prisma"
-import { ProductCategory } from "@prisma/client"
+import { ProductAnimalCategory, ProductCategory } from "@prisma/client"
 
 interface CreateProductParams {
     name: string
     description: string
     category: ProductCategory
+    animal: ProductAnimalCategory
     value: number
     quantity: number
     image: string
@@ -18,6 +19,7 @@ interface UpdateProductParams {
     name: string
     description: string
     category: ProductCategory
+    animal: ProductAnimalCategory
     value: number
     quantity: number
     image: string
@@ -31,6 +33,7 @@ export async function createProduct(params: CreateProductParams) {
                 name: params.name,
                 description: params.description,
                 category: params.category,
+                animal: params.animal,
                 value: params.value,
                 quantity: params.quantity,
                 image: params.image || "",
@@ -62,6 +65,7 @@ export async function updateProduct(params: UpdateProductParams) {
                 name: params.name,
                 description: params.description,
                 category: params.category,
+                animal: params.animal,
                 value: params.value,
                 quantity: params.quantity,
                 image: params.image || "",

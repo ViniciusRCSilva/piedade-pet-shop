@@ -18,11 +18,18 @@ enum ProductCategory {
     PLAGUE_CONTROL // Controle de pragas
 }
 
+enum ProductAnimalCategory {
+    DOG // Cachorro
+    CAT // Gato
+    DOG_AND_CAT // Cachorro e Gato
+    OTHER // Outro
+}
+
 enum OrderStatus {
-    PENDING
-    CONFIRMED
-    CANCELLED
-    CONCLUDED
+    PENDING // Pendente
+    CONFIRMED // Confirmado
+    CANCELLED // Cancelado
+    CONCLUDED // Concluído
 }
 
 model Product {
@@ -31,6 +38,7 @@ model Product {
     description           String
     value                 Decimal                 @db.Decimal(10, 2)
     category              ProductCategory
+    animal                ProductAnimalCategory   @default(OTHER)
     quantity              Decimal                 @db.Decimal(10, 2)
     image                 String
     createdAt             DateTime                @default(now())
