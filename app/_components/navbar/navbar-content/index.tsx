@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "../..
 import { Heart, House, InstagramLogo, Layout, List, Scroll, SignIn, SignOut, Storefront, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { User } from "@prisma/client";
 import { usePathname } from "next/navigation";
+import { ScrollArea } from "../../ui/scroll-area";
 
 interface NavbarContentProps {
     userdb: User | null;
@@ -38,129 +39,131 @@ const NavbarContent = ({ userdb, isAdmin }: NavbarContentProps) => {
                                 </Button>
                             </SheetTrigger>
                             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                                <div className="flex flex-col gap-6">
-                                    <SheetTitle className="flex items-center gap-2">
-                                        <span className="text-2xl font-medium">Menu</span>
-                                    </SheetTitle>
+                                <ScrollArea className="h-[calc(100vh-4rem)]">
+                                    <div className="flex flex-col gap-6">
+                                        <SheetTitle className="flex items-center gap-2">
+                                            <span className="text-2xl font-medium">Menu</span>
+                                        </SheetTitle>
 
-                                    <div className="border-t pt-6">
-                                        <SignedIn>
-                                            <Link className="flex items-center gap-3 group" href="/perfil">
-                                                {user?.hasImage && (
-                                                    <Image
-                                                        src={user?.imageUrl}
-                                                        alt={`${userdb?.name} Avatar`}
-                                                        width={40}
-                                                        height={40}
-                                                        className="rounded-full"
-                                                    />
-                                                )}
+                                        <div className="border-t pt-6">
+                                            <SignedIn>
+                                                <Link className="flex items-center gap-3 group" href="/perfil">
+                                                    {user?.hasImage && (
+                                                        <Image
+                                                            src={user?.imageUrl}
+                                                            alt={`${userdb?.name} Avatar`}
+                                                            width={40}
+                                                            height={40}
+                                                            className="rounded-full"
+                                                        />
+                                                    )}
 
-                                                <div className="flex flex-col text-left">
-                                                    <p className="group-hover:underline">
-                                                        {userdb?.name}
-                                                    </p>
-                                                    <p
-                                                        className="text-sm text-muted-foreground"
-                                                    >
-                                                        {userdb?.email}
-                                                    </p>
-                                                </div>
-                                            </Link>
-                                        </SignedIn>
+                                                    <div className="flex flex-col text-left">
+                                                        <p className="group-hover:underline">
+                                                            {userdb?.name}
+                                                        </p>
+                                                        <p
+                                                            className="text-sm text-muted-foreground"
+                                                        >
+                                                            {userdb?.email}
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </SignedIn>
 
-                                        <SignedOut>
-                                            <SignInButton signUpFallbackRedirectUrl={"/"} mode="modal">
-                                                <SheetClose asChild>
-                                                    <Button className="w-full gap-2">
-                                                        <SignIn className="h-4 w-4" />
-                                                        Entrar
-                                                    </Button>
-                                                </SheetClose>
-                                            </SignInButton>
-                                        </SignedOut>
-                                    </div>
+                                            <SignedOut>
+                                                <SignInButton signUpFallbackRedirectUrl={"/"} mode="modal">
+                                                    <SheetClose asChild>
+                                                        <Button className="w-full gap-2">
+                                                            <SignIn className="h-4 w-4" />
+                                                            Entrar
+                                                        </Button>
+                                                    </SheetClose>
+                                                </SignInButton>
+                                            </SignedOut>
+                                        </div>
 
-                                    {isAdmin && (
-                                        <div className="flex flex-col gap-3 border-t pt-6">
-                                            <p>Função de Administrador</p>
+                                        {isAdmin && (
+                                            <div className="flex flex-col gap-3 border-t pt-6">
+                                                <p>Função de Administrador</p>
+                                                <Link
+                                                    href="/admin"
+                                                    className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
+                                                >
+                                                    <Layout className="h-4 w-4" />
+                                                    Painel Administrativo
+                                                </Link>
+                                            </div>
+                                        )}
+
+                                        <div className="flex flex-col gap-6 border-t pt-6">
                                             <Link
-                                                href="/admin"
+                                                href="/"
                                                 className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
                                             >
-                                                <Layout className="h-4 w-4" />
-                                                Painel Administrativo
+                                                <House className="h-4 w-4" />
+                                                Página inicial
+                                            </Link>
+
+                                            <Link
+                                                href="/produtos"
+                                                className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
+                                            >
+                                                <Storefront className="h-4 w-4" />
+                                                Produtos
+                                            </Link>
+
+                                            {user && (
+                                                <Link
+                                                    href="/produtos-favoritos"
+                                                    className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
+                                                >
+                                                    <Heart className="h-4 w-4" />
+                                                    Produtos favoritos
+                                                </Link>
+                                            )}
+
+                                            {user && (
+                                                <Link
+                                                    href="/pedidos"
+                                                    className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
+                                                >
+                                                    <Scroll className="h-4 w-4" />
+                                                    Meus pedidos
+                                                </Link>
+                                            )}
+                                        </div>
+
+                                        <div className="flex flex-col gap-6 border-t pt-6">
+                                            <Link
+                                                href="http://api.whatsapp.com/send?1=pt_BR&phone=5581991919853"
+                                                target="_blank"
+                                                className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
+                                            >
+                                                <WhatsappLogo className="h-4 w-4" />
+                                                Contato
+                                            </Link>
+
+                                            <Link
+                                                href="https://www.instagram.com/piedadepetshop/"
+                                                target="_blank"
+                                                className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
+                                            >
+                                                <InstagramLogo className="h-4 w-4" />
+                                                Instagram
                                             </Link>
                                         </div>
-                                    )}
 
-                                    <div className="flex flex-col gap-6 border-t pt-6">
-                                        <Link
-                                            href="/"
-                                            className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
-                                        >
-                                            <House className="h-4 w-4" />
-                                            Página inicial
-                                        </Link>
-
-                                        <Link
-                                            href="/produtos"
-                                            className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
-                                        >
-                                            <Storefront className="h-4 w-4" />
-                                            Produtos
-                                        </Link>
-
-                                        {user && (
-                                            <Link
-                                                href="/produtos-favoritos"
-                                                className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
-                                            >
-                                                <Heart className="h-4 w-4" />
-                                                Produtos favoritos
-                                            </Link>
-                                        )}
-
-                                        {user && (
-                                            <Link
-                                                href="/pedidos"
-                                                className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
-                                            >
-                                                <Scroll className="h-4 w-4" />
-                                                Meus pedidos
-                                            </Link>
-                                        )}
+                                        <SignedIn>
+                                            <SignOutButton>
+                                                <span className="flex items-center gap-3 border-t pt-6 text-muted-foreground transition-colors cursor-pointer hover:text-primary">
+                                                    <SignOut className="h-4 w-4" />
+                                                    Sair da conta
+                                                </span>
+                                            </SignOutButton>
+                                        </SignedIn>
                                     </div>
-
-                                    <div className="flex flex-col gap-6 border-t pt-6">
-                                        <Link
-                                            href="http://api.whatsapp.com/send?1=pt_BR&phone=5581991919853"
-                                            target="_blank"
-                                            className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
-                                        >
-                                            <WhatsappLogo className="h-4 w-4" />
-                                            Contato
-                                        </Link>
-
-                                        <Link
-                                            href="https://www.instagram.com/piedadepetshop/"
-                                            target="_blank"
-                                            className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-primary"
-                                        >
-                                            <InstagramLogo className="h-4 w-4" />
-                                            Instagram
-                                        </Link>
-                                    </div>
-
-                                    <SignedIn>
-                                        <SignOutButton>
-                                            <span className="flex items-center gap-3 border-t pt-6 text-muted-foreground transition-colors cursor-pointer hover:text-primary">
-                                                <SignOut className="h-4 w-4" />
-                                                Sair da conta
-                                            </span>
-                                        </SignOutButton>
-                                    </SignedIn>
-                                </div>
+                                </ScrollArea>
                             </SheetContent>
                         </Sheet>
                     </div>

@@ -48,7 +48,7 @@ const Products = async () => {
                     <div className="w-full h-[1px] bg-purple/20" />
                 </div>
 
-                <section className="flex-1 h-fit flex items-center pt-10 px-6 mb-10 lg:px-20">
+                <section className="flex-1 h-fit flex items-center px-6 mb-10 lg:px-20 lg:pt-10">
                     <ProductList initialProducts={serializedProducts} />
                 </section>
 

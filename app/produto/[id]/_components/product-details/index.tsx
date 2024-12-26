@@ -68,8 +68,8 @@ export function ProductDetails({ product }: ProductDetailsProps) {
     };
 
     return (
-        <div className="container">
-            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8">
+        <div className="container px-4 lg:px-6">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:gap-8">
                 <div className="flex flex-col gap-4 items-center">
                     <div className="hidden lg:flex w-full max-w-[600px] h-[600px] items-center justify-center rounded-lg border bg-white p-6">
                         <ZoomImage
@@ -80,7 +80,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                             className="object-contain"
                         />
                     </div>
-                    <div className="flex lg:hidden w-full max-w-[300px] h-[300px] items-center justify-center rounded-lg border bg-white p-6">
+                    <div className="flex lg:hidden w-full max-w-[300px] h-[300px] items-center justify-center rounded-lg border bg-white p-4">
                         <Image
                             src={product.image}
                             alt={product.name}
@@ -92,21 +92,21 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                     <p className="text-sm text-purple">*Imagem meramente ilustrativa</p>
                 </div>
 
-                <div className="w-full flex flex-col items-center px-10 lg:px-0">
-                    <div className="flex flex-col w-full h-full justify-between">
+                <div className="w-full flex flex-col items-center px-0 lg:px-0">
+                    <div className="flex flex-col w-full h-full justify-between gap-6 lg:gap-8">
                         <div className="flex flex-col gap-4">
                             {isSignedIn ? (
                                 <FavoriteButton productId={product.id} className="self-end" />
                             ) : null}
-                            <h1 className="text-4xl text-muted-foreground">{product.name}</h1>
+                            <h1 className="text-2xl lg:text-4xl text-muted-foreground">{product.name}</h1>
 
                             <div className="flex items-center gap-2">
-                                <span className="text-sm text-muted-foreground">Código: {product.id}</span>
-                                <span className="text-sm text-muted-foreground">|</span>
+                                <span className="text-xs lg:text-sm text-muted-foreground">Código: {product.id}</span>
+                                <span className="text-xs lg:text-sm text-muted-foreground">|</span>
                                 {product.quantity === 0 ? (
-                                    <span className="text-sm text-red-500">Esgotado</span>
+                                    <span className="text-xs lg:text-sm text-red-500">Esgotado</span>
                                 ) : (
-                                    <span className="text-sm text-emerald-500">Em estoque</span>
+                                    <span className="text-xs lg:text-sm text-emerald-500">Em estoque</span>
                                 )}
                             </div>
 
@@ -114,15 +114,15 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
                             <div className="flex flex-col gap-2">
                                 <p className="text-muted-foreground font-semibold">Informações:</p>
-                                <p className="text-sm text-muted-foreground">{product.description}</p>
+                                <p className="text-xs lg:text-sm text-muted-foreground">{product.description}</p>
                             </div>
 
-                            <div className="text-3xl font-bold text-primary">
+                            <div className="text-2xl lg:text-3xl font-bold text-primary">
                                 <MoneyFormat value={product.value} />
                             </div>
                         </div>
 
-                        <div className="flex items-end gap-4">
+                        <div className="flex flex-col lg:flex-row items-stretch lg:items-end gap-4">
                             <div className="flex flex-col gap-2">
                                 <p className="text-sm text-muted-foreground">Quantidade:</p>
                                 {product.category === "KG_FEED" ? (

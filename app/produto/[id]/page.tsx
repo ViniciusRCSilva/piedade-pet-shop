@@ -58,13 +58,13 @@ export default async function ProductPage(props: ProductPageProps) {
 
   return (
     <>
-      <main className="flex flex-col min-h-screen pt-[100px]">
-        <div className="fixed bottom-0 right-0 m-5 z-40 lg:m-10">
+      <main className="flex flex-col min-h-screen pt-[72px] lg:pt-[100px]">
+        <div className="fixed bottom-0 right-0 m-3 z-40 lg:m-10">
           <Cart />
         </div>
 
         <section className="flex-1">
-          <div className="flex flex-col sticky top-20 px-6 pt-10 mb-10 gap-8 bg-white lg:px-20 z-10">
+          <div className="flex flex-col sticky top-20 px-4 pt-6 mb-6 gap-4 bg-white lg:px-20 lg:pt-10 lg:mb-10 lg:gap-8 z-10">
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
@@ -84,15 +84,15 @@ export default async function ProductPage(props: ProductPageProps) {
             <div className="w-full h-[1px] bg-purple/20" />
           </div>
 
-          <section className="flex w-full h-full justify-center mb-10">
+          <section className="flex w-full h-full justify-center mb-6 lg:mb-10">
             <ProductDetails product={serializedProduct} />
           </section>
 
-          <section className="flex flex-col w-full h-full gap-8 px-20 mb-10">
+          <section className="flex flex-col w-full h-full gap-6 px-4 mb-6 lg:gap-8 lg:px-20 lg:mb-10">
             <div className="w-full h-[1px] bg-purple/20" />
             <div className="flex flex-col">
-              <h1 className="text-lg text-muted-foreground mb-6">Veja também:</h1>
-              <Carousel className="w-full lg:px-20">
+              <h1 className="text-lg text-muted-foreground mb-4 lg:mb-6">Veja também:</h1>
+              <Carousel className="w-full">
                 <CarouselContent className="-ml-1 select-none">
                   {(() => {
                     const baseFiltered = serializedProducts
@@ -118,8 +118,8 @@ export default async function ProductPage(props: ProductPageProps) {
                       ));
                   })()}
                 </CarouselContent>
-                <CarouselPrevious className="absolute left-1 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white w-8 h-8 md:w-12 md:h-12" />
-                <CarouselNext className="absolute right-1 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white w-8 h-8 md:w-12 md:h-12" />
+                <CarouselPrevious className="absolute -left-1 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white w-8 h-8 md:w-12 md:h-12 lg:left-1" />
+                <CarouselNext className="absolute -right-1 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white w-8 h-8 md:w-12 md:h-12 lg:right-1" />
               </Carousel>
             </div>
           </section>
