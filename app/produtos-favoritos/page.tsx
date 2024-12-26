@@ -76,8 +76,8 @@ export default async function FavoriteProductsPage() {
 
                 {products.length === 0 ? (
                     <div className="flex flex-col items-center justify-center h-[400px] text-muted-foreground">
-                        <Heart size={64} />
-                        <p className="text-xl mt-4">Você ainda não tem produtos favoritos</p>
+                        <Heart size={60} />
+                        <p className="text-sm lg:text-xl text-center mt-4">Você ainda não tem produtos favoritos</p>
                     </div>
                 ) : (
                     <div className="flex-1 w-full h-full pt-10 mb-10">
