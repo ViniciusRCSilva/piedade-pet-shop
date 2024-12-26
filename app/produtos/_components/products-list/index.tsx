@@ -12,6 +12,7 @@ import { Button } from "@/app/_components/ui/button";
 import { MagnifyingGlass, Sliders, Trash } from "@phosphor-icons/react/dist/ssr";
 import { useAuth } from "@clerk/nextjs";
 import { useSearchParams } from "next/navigation";
+import { ScrollArea } from "@/app/_components/ui/scroll-area";
 
 interface ProductListProps {
     initialProducts: SerializedProduct[];
@@ -86,109 +87,111 @@ export default function ProductList({ initialProducts }: ProductListProps) {
         <div className="w-full">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
                 {/* Mobile Filter Button */}
-                <div className="lg:hidden">
+                <div className="flex w-full justify-end sticky top-28 z-20 lg:hidden">
                     <Sheet>
                         <SheetTrigger asChild>
-                            <Button variant="outline" className="w-full">
+                            <Button variant="outline">
                                 <Sliders className="mr-2 h-4 w-4" />
                                 Filtros
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="left">
-                            <SheetHeader>
-                                <SheetTitle>Filtros</SheetTitle>
-                                <SheetDescription>
-                                    Ajuste os filtros para encontrar o produto ideal
-                                </SheetDescription>
-                            </SheetHeader>
-                            <div className="flex flex-col gap-6 mt-6">
-                                {/* Reset Filters Button - Mobile */}
-                                {hasActiveFilters && (
-                                    <Button
-                                        variant="destructive"
-                                        onClick={resetFilters}
-                                        className="w-full"
-                                    >
-                                        <Trash className="mr-2 h-4 w-4" />
-                                        Remover Filtros
-                                    </Button>
-                                )}
-                                {/* Search Input */}
-                                <div className="space-y-2">
-                                    <h3 className="font-semibold text-muted-foreground">Buscar</h3>
-                                    <div className="relative">
-                                        <MagnifyingGlass className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                                        <Input
-                                            placeholder="Buscar produtos..."
-                                            className="pl-8"
-                                            value={searchTerm}
-                                            onChange={(e) => setSearchTerm(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Category Filter */}
-                                <div className="space-y-2">
-                                    <h3 className="font-semibold text-muted-foreground">Categorias</h3>
-                                    <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as ProductCategory | "all")}>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Filtrar por categoria" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="all">Todas as categorias</SelectItem>
-                                            {Object.values(ProductCategory).map((category) => (
-                                                <SelectItem key={category} value={category}>
-                                                    {formatters.category(category)}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-
-                                {/* Animal Filter */}
-                                <div className="space-y-2">
-                                    <h3 className="font-semibold text-muted-foreground">Animais</h3>
-                                    <Select value={selectedAnimal} onValueChange={(value) => setSelectedAnimal(value as ProductAnimalCategory | "all")}>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Filtrar por animal" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="all">Todas os animais</SelectItem>
-                                            {Object.values(ProductAnimalCategory).map((animal) => (
-                                                <SelectItem key={animal} value={animal}>
-                                                    {formatters.getAnimalCategory(animal)}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-
-                                {/* Price Range Radio Group */}
-                                <div className="space-y-2">
-                                    <h3 className="font-semibold text-muted-foreground">Faixa de Preço</h3>
+                            <ScrollArea className="h-[calc(100vh-4rem)]">
+                                <SheetHeader>
+                                    <SheetTitle>Filtros</SheetTitle>
+                                    <SheetDescription>
+                                        Ajuste os filtros para encontrar o produto ideal
+                                    </SheetDescription>
+                                </SheetHeader>
+                                <div className="flex flex-col gap-6 mt-6">
+                                    {/* Reset Filters Button - Mobile */}
+                                    {hasActiveFilters && (
+                                        <Button
+                                            variant="destructive"
+                                            onClick={resetFilters}
+                                            className="w-full"
+                                        >
+                                            <Trash className="mr-2 h-4 w-4" />
+                                            Remover Filtros
+                                        </Button>
+                                    )}
+                                    {/* Search Input */}
                                     <div className="space-y-2">
-                                        {priceRanges.map((range) => (
-                                            <label
-                                                key={range.id}
-                                                className="flex items-center space-x-2"
-                                            >
-                                                <input
-                                                    type="radio"
-                                                    name="price-range"
-                                                    value={range.id}
-                                                    checked={selectedPriceRange === range.id}
-                                                    onChange={(e) => setSelectedPriceRange(e.target.value)}
-                                                    className="h-4 w-4"
-                                                />
-                                                <span>{range.label}</span>
-                                                <span className="text-muted-foreground">
-                                                    ({getProductCountInPriceRange(range.min, range.max)})
-                                                </span>
-                                            </label>
-                                        ))}
+                                        <h3 className="font-semibold text-muted-foreground">Buscar</h3>
+                                        <div className="relative">
+                                            <MagnifyingGlass className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                                            <Input
+                                                placeholder="Buscar produtos..."
+                                                className="pl-8"
+                                                value={searchTerm}
+                                                onChange={(e) => setSearchTerm(e.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Category Filter */}
+                                    <div className="space-y-2">
+                                        <h3 className="font-semibold text-muted-foreground">Categorias</h3>
+                                        <Select value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as ProductCategory | "all")}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Filtrar por categoria" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="all">Todas as categorias</SelectItem>
+                                                {Object.values(ProductCategory).map((category) => (
+                                                    <SelectItem key={category} value={category}>
+                                                        {formatters.category(category)}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    {/* Animal Filter */}
+                                    <div className="space-y-2">
+                                        <h3 className="font-semibold text-muted-foreground">Animais</h3>
+                                        <Select value={selectedAnimal} onValueChange={(value) => setSelectedAnimal(value as ProductAnimalCategory | "all")}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Filtrar por animal" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="all">Todas os animais</SelectItem>
+                                                {Object.values(ProductAnimalCategory).map((animal) => (
+                                                    <SelectItem key={animal} value={animal}>
+                                                        {formatters.getAnimalCategory(animal)}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    {/* Price Range Radio Group */}
+                                    <div className="space-y-2">
+                                        <h3 className="font-semibold text-muted-foreground">Faixa de Preço</h3>
+                                        <div className="space-y-2">
+                                            {priceRanges.map((range) => (
+                                                <label
+                                                    key={range.id}
+                                                    className="flex items-center space-x-2"
+                                                >
+                                                    <input
+                                                        type="radio"
+                                                        name="price-range"
+                                                        value={range.id}
+                                                        checked={selectedPriceRange === range.id}
+                                                        onChange={(e) => setSelectedPriceRange(e.target.value)}
+                                                        className="h-4 w-4"
+                                                    />
+                                                    <span>{range.label}</span>
+                                                    <span className="text-muted-foreground">
+                                                        ({getProductCountInPriceRange(range.min, range.max)})
+                                                    </span>
+                                                </label>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </ScrollArea>
                         </SheetContent>
                     </Sheet>
                 </div>
