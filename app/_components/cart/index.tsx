@@ -4,11 +4,12 @@ import { ShoppingCart, X } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "../ui/button";
 
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "../ui/popover"
-
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "../ui/sheet"
 import { Badge } from "../ui/badge";
 import { ScrollArea } from "../ui/scroll-area";
 import MoneyFormat from "../money-format";
@@ -47,8 +48,8 @@ const Cart = () => {
     }
 
     return (
-        <Popover>
-            <PopoverTrigger asChild>
+        <Sheet>
+            <SheetTrigger asChild>
                 <Button className="w-16 h-16 rounded-full shadow-md">
                     <Badge
                         className="absolute right-0 top-0 h-8 w-8 -translate-y-1/4 translate-x-1/4 transform border-2 border-primary bg-white text-lg text-muted-foreground hover:bg-white"
@@ -59,15 +60,17 @@ const Cart = () => {
                     </Badge>
                     <ShoppingCart width={64} height={64} />
                 </Button>
-            </PopoverTrigger>
-            <PopoverContent className="mb-2 mr-4 w-[80vw] lg:w-[30vw]">
-                <div className="flex h-[80vh] flex-col lg:h-[600px]">
+            </SheetTrigger>
+            <SheetContent side="right" className="w-full sm:w-[540px]">
+                <div className="flex h-full flex-col">
                     {/* Header */}
-                    <div className="mb-4 flex items-center justify-between">
-                        <span className="flex items-center gap-2 text-2xl font-semibold text-muted-foreground">
-                            <ShoppingCart />
-                            Carrinho
-                        </span>
+                    <div className="flex items-center justify-between pb-4">
+                        <SheetHeader className="flex items-center">
+                            <SheetTitle className="flex items-center gap-2 text-xl font-semibold text-muted-foreground">
+                                <ShoppingCart />
+                                Carrinho
+                            </SheetTitle>
+                        </SheetHeader>
                         {cartItems.length > 0 && (
                             <Button
                                 onClick={removeAll}
@@ -81,10 +84,10 @@ const Cart = () => {
                         )}
                     </div>
 
-                    <div className="h-[1px] w-full bg-muted mb-4" />
+                    <div className="h-[1px] w-full bg-muted" />
 
                     {/* Cart Items */}
-                    <ScrollArea className="flex-1 px-2">
+                    <ScrollArea className="flex-1 py-4">
                         {cartItems.length === 0 ? (
                             <div className="flex h-full flex-col items-center justify-center text-muted-foreground">
                                 <ShoppingCart width={48} height={48} className="mb-2 opacity-20" />
@@ -102,25 +105,27 @@ const Cart = () => {
                         )}
                     </ScrollArea>
 
-                    {/* Footer */}
-                    <div className="mt-4 border-t pt-4">
-                        <div className="mb-4 flex items-center justify-between">
-                            <span className="text-lg text-muted-foreground">Total</span>
-                            <span className="text-2xl font-bold text-primary">
-                                <MoneyFormat value={cartValue} />
-                            </span>
+                    {/* Footer with total and checkout button */}
+                    {cartItems.length > 0 && (
+                        <div className="border-t pt-4">
+                            <div className="mb-4 flex items-center justify-between">
+                                <span className="text-muted-foreground">Total</span>
+                                <span className="text-lg font-semibold text-primary">
+                                    <MoneyFormat value={cartValue} />
+                                </span>
+                            </div>
+                            <AddOrderButton
+                                cartItems={cartItems.map(item => ({
+                                    ...item,
+                                    isKgProduct: item.isKgProduct || false
+                                }))}
+                                cartValue={cartValue}
+                            />
                         </div>
-                        <AddOrderButton
-                            cartItems={cartItems.map(item => ({
-                                ...item,
-                                isKgProduct: item.isKgProduct || false
-                            }))}
-                            cartValue={cartValue}
-                        />
-                    </div>
+                    )}
                 </div>
-            </PopoverContent>
-        </Popover>
+            </SheetContent>
+        </Sheet>
     );
 }
 

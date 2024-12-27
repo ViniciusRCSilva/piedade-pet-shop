@@ -45,31 +45,26 @@ const CartProduct = ({ id, name, value, quantity, isKgProduct, availableQuantity
 
     return (
         <Card className="bg-white">
-            <CardHeader>
-                <div className="flex w-[150px] h-[150px] p-4 items-center justify-center rounded-lg border">
-                    <Image
-                        src={image}
-                        alt={name}
-                        className="object-cover"
-                        width={100}
-                        height={100}
-                    />
-                </div>
-                <div className="flex flex-col">
-                    <div>
-                        <CardTitle className="text-base text-muted-foreground text-justify md:text-lg">
-                            <Link href={`/produto/${id}`} className="hover:underline">
-                                {name}
-                            </Link>
-                            <span className="ml-2 text-sm font-normal">
-                                {isKgProduct ? `(${quantity}kg)` : `(Qtd: ${quantity})`}
-                            </span>
-                        </CardTitle>
-                    </div>
-                    <CardDescription className="whitespace-nowrap text-2xl font-bold text-primary">
-                        <MoneyFormat value={totalValue} />
-                        {isKgProduct && "/kg"}
-                    </CardDescription>
+            <CardHeader className="flex-grow group">
+                <div className="flex justify-between items-start">
+                    <Link href={`/produto/${id}`} className="flex-1 group">
+                        <div className="flex w-full items-center justify-center mb-2">
+                            <div className="flex w-[200px] h-[200px] items-center justify-center">
+                                <Image
+                                    src={image}
+                                    alt={name}
+                                    className="object-cover"
+                                    width={150}
+                                    height={150}
+                                />
+                            </div>
+                        </div>
+                        <CardTitle className="text-base text-muted-foreground font-normal group-hover:underline">{name}</CardTitle>
+                        <CardDescription className="text-2xl font-bold text-primary">
+                            <MoneyFormat value={totalValue} />
+                            {isKgProduct ? "/KG" : ""}
+                        </CardDescription>
+                    </Link>
                 </div>
             </CardHeader>
 
@@ -128,7 +123,7 @@ const CartProduct = ({ id, name, value, quantity, isKgProduct, availableQuantity
                         className="gap-2"
                     >
                         <XIcon className="h-4 w-4" />
-                        <span className="hidden md:block">Remover</span>
+                        <span>Remover</span>
                     </Button>
                 </div>
             </CardContent>

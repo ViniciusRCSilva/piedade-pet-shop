@@ -19,6 +19,7 @@ import {
   BreadcrumbSeparator,
 } from "@/app/_components/ui/breadcrumb";
 import Footer from "@/app/_components/footer";
+import { formatters } from "@/app/_utils/utils";
 
 interface ProductPageProps {
   params: Promise<{
@@ -73,6 +74,14 @@ export default async function ProductPage(props: ProductPageProps) {
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
                   <BreadcrumbLink href="/produtos">Produtos</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={`/produtos?category=${serializedProduct.category}`}>{formatters.category(serializedProduct.category)}</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={`/produtos?category=${serializedProduct.category}&animal=${serializedProduct.animal}`}>{formatters.getAnimalCategory(serializedProduct.animal)}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
