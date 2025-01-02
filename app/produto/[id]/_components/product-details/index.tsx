@@ -110,76 +110,79 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                                 )}
                             </div>
 
-                            <div className="w-full h-[1px] bg-muted" />
+                            <div className="w-full h-[1px] bg-purple/20" />
 
                             <div className="flex flex-col gap-2">
                                 <p className="text-muted-foreground font-semibold">Informações:</p>
                                 <p className="text-xs lg:text-sm text-muted-foreground">{product.description}</p>
                             </div>
+                        </div>
 
+                        <div className="flex flex-col gap-4">
+                            <div className="w-full h-[1px] bg-purple/20" />
                             <div className="text-2xl lg:text-3xl font-bold text-primary">
                                 <MoneyFormat value={product.value} />
                             </div>
-                        </div>
+                            <div className="flex flex-col lg:flex-row items-stretch lg:items-end gap-4">
+                                <div className="flex flex-col gap-2">
+                                    <p className="text-sm text-muted-foreground">Quantidade:</p>
+                                    {product.category === "KG_FEED" ? (
+                                        <div className="flex items-center gap-2">
+                                            <Button
+                                                variant="outline"
+                                                size="icon"
+                                                onClick={handleKgDecrement}
+                                            >
+                                                <Minus className="h-4 w-4" />
+                                            </Button>
+                                            <span className="w-16 text-center">{kgQuantity}kg</span>
+                                            <Button
+                                                variant="outline"
+                                                size="icon"
+                                                onClick={handleKgIncrement}
+                                            >
+                                                <Plus className="h-4 w-4" />
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <Select
+                                            value={productQuantity.toString()}
+                                            onValueChange={(value: string) => setProductQuantity(Number(value))}
+                                            disabled={product.quantity === 0}
+                                        >
+                                            <SelectTrigger className="w-[100px]">
+                                                <SelectValue placeholder="Qtd" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {Array.from({ length: product.quantity }, (_, i) => i + 1).map((num) => (
+                                                    <SelectItem key={num} value={num.toString()}>
+                                                        {num}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    )}
+                                </div>
 
-                        <div className="flex flex-col lg:flex-row items-stretch lg:items-end gap-4">
-                            <div className="flex flex-col gap-2">
-                                <p className="text-sm text-muted-foreground">Quantidade:</p>
-                                {product.category === "KG_FEED" ? (
-                                    <div className="flex items-center gap-2">
-                                        <Button
-                                            variant="outline"
-                                            size="icon"
-                                            onClick={handleKgDecrement}
-                                        >
-                                            <Minus className="h-4 w-4" />
-                                        </Button>
-                                        <span className="w-16 text-center">{kgQuantity}kg</span>
-                                        <Button
-                                            variant="outline"
-                                            size="icon"
-                                            onClick={handleKgIncrement}
-                                        >
-                                            <Plus className="h-4 w-4" />
-                                        </Button>
-                                    </div>
-                                ) : (
-                                    <Select
-                                        value={productQuantity.toString()}
-                                        onValueChange={(value: string) => setProductQuantity(Number(value))}
+                                {isSignedIn ? (
+                                    <Button
+                                        className="flex-1"
+                                        onClick={handleAddToCart}
                                         disabled={product.quantity === 0}
                                     >
-                                        <SelectTrigger className="w-[100px]">
-                                            <SelectValue placeholder="Qtd" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {Array.from({ length: product.quantity }, (_, i) => i + 1).map((num) => (
-                                                <SelectItem key={num} value={num.toString()}>
-                                                    {num}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
+                                        Adicionar ao carrinho
+                                    </Button>
+                                ) : (
+                                    <SignInButton signUpFallbackRedirectUrl={"/"} mode="modal">
+                                        <Button className="flex w-full items-center gap-2" variant="outline">
+                                            <SignIn className="w-4 h-4" />
+                                            Entre para adicionar ao carrinho
+                                        </Button>
+                                    </SignInButton>
                                 )}
                             </div>
-
-                            {isSignedIn ? (
-                                <Button
-                                    className="flex-1"
-                                    onClick={handleAddToCart}
-                                    disabled={product.quantity === 0}
-                                >
-                                    Adicionar ao carrinho
-                                </Button>
-                            ) : (
-                                <SignInButton signUpFallbackRedirectUrl={"/"} mode="modal">
-                                    <Button className="flex w-full items-center gap-2" variant="outline">
-                                        <SignIn className="w-4 h-4" />
-                                        Entre para adicionar ao carrinho
-                                    </Button>
-                                </SignInButton>
-                            )}
                         </div>
+
                     </div>
                 </div>
             </div>
